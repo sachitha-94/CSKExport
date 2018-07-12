@@ -9,6 +9,6 @@ package controller;
  *
  * @author Sachitha
  */
-public class CategoryController {
+public class ChequeController {
     
 }

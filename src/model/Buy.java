@@ -12,8 +12,11 @@ import java.util.Date;
  * @author Sachitha
  */
 public class Buy {
-    private String bid;
-    private double quantity;
+    private int bid;
+    private String cid;
+    private double grossWeight;
+    private double wetWeight;
+    private double reduceWeight;
     private double amount;
     private String cheqNo;
     private Date date;

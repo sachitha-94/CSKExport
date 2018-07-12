@@ -3,18 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
-
-import java.util.Date;
+package controller;
 
 /**
  *
  * @author Sachitha
  */
-public class Cheque {
-    private String cheqNo;
-    private String nic;
-    private String bankName;
-    private Date issueDate;
+public class CinnamonTypeController {
     
 }

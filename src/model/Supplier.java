@@ -15,6 +15,48 @@ public class Supplier {
     private String name;
     private String address;
     private int tp;
+
+    public Supplier() {
+    }
+
+    public Supplier(String nic, String name, String address, int tp) {
+        this.nic = nic;
+        this.name = name;
+        this.address = address;
+        this.tp = tp;
+    }
+
+    public String getNic() {
+        return nic;
+    }
+
+    public void setNic(String nic) {
+        this.nic = nic;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getTp() {
+        return tp;
+    }
+
+    public void setTp(int tp) {
+        this.tp = tp;
+    }
     
     
 }

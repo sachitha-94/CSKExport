@@ -28,27 +28,36 @@ public class MainForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        cashTextField1 = new javax.swing.JTextField();
         addButton1 = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         orderTable1 = new javax.swing.JTable();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        removeButton1 = new javax.swing.JButton();
-        balanceTextField1 = new javax.swing.JTextField();
         sidTextField1 = new javax.swing.JTextField();
-        jLabel22 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        payButton1 = new javax.swing.JButton();
         quantityTextField3 = new javax.swing.JTextField();
         quantityTextField4 = new javax.swing.JTextField();
         itemComboBox1 = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
         quantityTextField5 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        totalTextField1 = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jLabel16 = new javax.swing.JLabel();
+        sidTextField2 = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        sidTextField3 = new javax.swing.JTextField();
+        sidTextField4 = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        payButton = new javax.swing.JButton();
+        totalTextField = new javax.swing.JTextField();
+        cashTextField = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        balanceTextField = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -61,24 +70,6 @@ public class MainForm extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        cashTextField1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        cashTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cashTextField1ActionPerformed(evt);
-            }
-        });
-        cashTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cashTextField1KeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                cashTextField1KeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                cashTextField1KeyTyped(evt);
-            }
-        });
 
         addButton1.setFont(new java.awt.Font("Nirmala UI", 1, 24)); // NOI18N
         addButton1.setText("ADD");
@@ -102,35 +93,10 @@ public class MainForm extends javax.swing.JFrame {
 
             },
             new String [] {
-                "SID", "Catagory", "Item", "Sell Price", "Quantity", "Amount"
+                "Cynnamon Type", "Gross Weight", "Wet Weight", "Reduce Weight", "Amount"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, true, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane2.setViewportView(orderTable1);
-
-        jLabel9.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
-        jLabel9.setText("Total :");
-
-        jLabel17.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
-        jLabel17.setText("Balance :");
-
-        removeButton1.setFont(new java.awt.Font("Nirmala UI", 0, 11)); // NOI18N
-        removeButton1.setText("Remove Item");
-        removeButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeButton1ActionPerformed(evt);
-            }
-        });
-
-        balanceTextField1.setEditable(false);
-        balanceTextField1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
 
         sidTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,20 +109,10 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel22.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
-        jLabel22.setText("Cash :");
-
         jLabel5.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         jLabel5.setText("Payment No:");
 
-        payButton1.setFont(new java.awt.Font("Nirmala UI", 1, 48)); // NOI18N
-        payButton1.setText("Print");
-        payButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                payButton1ActionPerformed(evt);
-            }
-        });
-
+        quantityTextField3.setEnabled(false);
         quantityTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 quantityTextField3ActionPerformed(evt);
@@ -226,15 +182,6 @@ public class MainForm extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         jLabel15.setText("Gross Weight");
 
-        totalTextField1.setEditable(false);
-        totalTextField1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        totalTextField1.setForeground(new java.awt.Color(255, 0, 0));
-        totalTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                totalTextField1ActionPerformed(evt);
-            }
-        });
-
         jLabel23.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         jLabel23.setText("Wet Weight");
 
@@ -245,18 +192,12 @@ public class MainForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(payButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel17)
-                            .addComponent(jLabel22)
-                            .addComponent(jLabel9))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(balanceTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                            .addComponent(cashTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(totalTextField1, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addComponent(quantityTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -277,17 +218,8 @@ public class MainForm extends javax.swing.JFrame {
                             .addComponent(quantityTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel21))
                         .addGap(27, 27, 27)
-                        .addComponent(addButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(removeButton1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(quantityTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(addButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,27 +242,188 @@ public class MainForm extends javax.swing.JFrame {
                             .addComponent(sidTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(itemComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(quantityTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(removeButton1)
-                        .addComponent(addButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(addButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
+        );
+
+        jLabel7.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
+        jLabel7.setText("Payment");
+
+        jCheckBox1.setText("Cheque");
+
+        jLabel16.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
+        jLabel16.setText("Cheque No");
+
+        sidTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sidTextField2ActionPerformed(evt);
+            }
+        });
+        sidTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                sidTextField2KeyPressed(evt);
+            }
+        });
+
+        jLabel17.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
+        jLabel17.setText("NIC");
+
+        sidTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sidTextField3ActionPerformed(evt);
+            }
+        });
+        sidTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                sidTextField3KeyPressed(evt);
+            }
+        });
+
+        sidTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sidTextField4ActionPerformed(evt);
+            }
+        });
+        sidTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                sidTextField4KeyPressed(evt);
+            }
+        });
+
+        jLabel18.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
+        jLabel18.setText("Bank Name");
+
+        jButton1.setText("New Supplier");
+
+        payButton.setFont(new java.awt.Font("Nirmala UI", 1, 48)); // NOI18N
+        payButton.setText("Print");
+        payButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payButtonActionPerformed(evt);
+            }
+        });
+
+        totalTextField.setEditable(false);
+        totalTextField.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        totalTextField.setForeground(new java.awt.Color(255, 0, 0));
+        totalTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalTextFieldActionPerformed(evt);
+            }
+        });
+
+        cashTextField.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        cashTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cashTextFieldActionPerformed(evt);
+            }
+        });
+        cashTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cashTextFieldKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cashTextFieldKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cashTextFieldKeyTyped(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
+        jLabel8.setText("Total :");
+
+        jLabel19.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
+        jLabel19.setText("Balance :");
+
+        balanceTextField.setEditable(false);
+        balanceTextField.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+
+        jLabel20.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
+        jLabel20.setText("Cash :");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel17))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sidTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sidTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sidTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCheckBox1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel19)
+                    .addComponent(jLabel20)
+                    .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(totalTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel22)
-                            .addComponent(cashTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel17)
-                            .addComponent(balanceTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(payButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(balanceTextField)
+                    .addComponent(cashTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(totalTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addGap(212, 212, 212)
+                    .addComponent(payButton, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCheckBox1)
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel16)
+                            .addComponent(sidTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17)
+                            .addComponent(sidTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(totalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel20)
+                            .addComponent(cashTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel19)
+                            .addComponent(balanceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(2, 2, 2)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(sidTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(127, 127, 127)
+                    .addComponent(payButton)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         jMenu1.setText("Main");
@@ -370,35 +463,23 @@ public class MainForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(223, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cashTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cashTextField1ActionPerformed
-
-    private void cashTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cashTextField1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cashTextField1KeyPressed
-
-    private void cashTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cashTextField1KeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cashTextField1KeyReleased
-
-    private void cashTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cashTextField1KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cashTextField1KeyTyped
 
     private void addButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButton1ActionPerformed
         // TODO add your handling code here:
@@ -408,10 +489,6 @@ public class MainForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_addButton1KeyPressed
 
-    private void removeButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_removeButton1ActionPerformed
-
     private void sidTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sidTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_sidTextField1ActionPerformed
@@ -419,10 +496,6 @@ public class MainForm extends javax.swing.JFrame {
     private void sidTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sidTextField1KeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_sidTextField1KeyPressed
-
-    private void payButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_payButton1ActionPerformed
 
     private void quantityTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityTextField3ActionPerformed
         // TODO add your handling code here:
@@ -480,9 +553,80 @@ public class MainForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_quantityTextField5KeyTyped
 
-    private void totalTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalTextField1ActionPerformed
+    private void sidTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sidTextField2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_totalTextField1ActionPerformed
+    }//GEN-LAST:event_sidTextField2ActionPerformed
+
+    private void sidTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sidTextField2KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sidTextField2KeyPressed
+
+    private void sidTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sidTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sidTextField3ActionPerformed
+
+    private void sidTextField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sidTextField3KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sidTextField3KeyPressed
+
+    private void sidTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sidTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sidTextField4ActionPerformed
+
+    private void sidTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sidTextField4KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sidTextField4KeyPressed
+
+    private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payButtonActionPerformed
+//        int rowCount = orderTable.getRowCount();
+//        if (rowCount > 0) {
+//
+//            double total = Double.valueOf(totalTextField.getText());
+//            try {
+//                //get next paymentID
+//                String pid = AutoId.getNextId("payment", "pid", "p");
+//
+//                int add_New = PaymentController.add_New(pid, total);
+//                if (add_New > 0) {
+//                    int remove_All_Payments = TempPaymentController.remove_All_Payments();
+//                    if (remove_All_Payments > 0) {
+//
+//                        dtmOL.setRowCount(0);
+//                        sidTextField.requestFocus();
+//                        JOptionPane.showMessageDialog(payButton, "paid");
+//
+//                    } else {
+//                        JOptionPane.showMessageDialog(payButton, "Try again.");
+//                    }
+//                } else {
+//                    JOptionPane.showMessageDialog(payButton, "Try again.");
+//                }
+//            } catch (ClassNotFoundException | SQLException ex) {
+//                Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//
+//        }
+    }//GEN-LAST:event_payButtonActionPerformed
+
+    private void totalTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totalTextFieldActionPerformed
+
+    private void cashTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashTextFieldActionPerformed
+
+    }//GEN-LAST:event_cashTextFieldActionPerformed
+
+    private void cashTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cashTextFieldKeyPressed
+
+    }//GEN-LAST:event_cashTextFieldKeyPressed
+
+    private void cashTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cashTextFieldKeyReleased
+
+    }//GEN-LAST:event_cashTextFieldKeyReleased
+
+    private void cashTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cashTextFieldKeyTyped
+
+    }//GEN-LAST:event_cashTextFieldKeyTyped
 
     /**
      * @param args the command line arguments
@@ -521,17 +665,23 @@ public class MainForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton1;
-    private javax.swing.JTextField balanceTextField1;
-    private javax.swing.JTextField cashTextField1;
+    private javax.swing.JTextField balanceTextField;
+    private javax.swing.JTextField cashTextField;
     private javax.swing.JComboBox itemComboBox1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -543,14 +693,17 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable orderTable1;
-    private javax.swing.JButton payButton1;
+    private javax.swing.JButton payButton;
     private javax.swing.JTextField quantityTextField3;
     private javax.swing.JTextField quantityTextField4;
     private javax.swing.JTextField quantityTextField5;
-    private javax.swing.JButton removeButton1;
     private javax.swing.JTextField sidTextField1;
-    private static javax.swing.JTextField totalTextField1;
+    private javax.swing.JTextField sidTextField2;
+    private javax.swing.JTextField sidTextField3;
+    private javax.swing.JTextField sidTextField4;
+    private static javax.swing.JTextField totalTextField;
     // End of variables declaration//GEN-END:variables
 }

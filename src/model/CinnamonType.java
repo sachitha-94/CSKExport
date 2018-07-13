@@ -10,9 +10,42 @@ package model;
  * @author Sachitha
  */
 public class CinnamonType {
-    private String cid;
-    private String type;
-    private double price;
+     private String cid;
+     private String type;
+     private double price;
+
+    public CinnamonType() {
+    }
+
+    public CinnamonType(String cid, String type, double price) {
+        this.cid = cid;
+        this.type = type;
+        this.price = price;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getCid() {
+        return cid;
+    }
+
+    public void setCid(String cid) {
+        this.cid = cid;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
             
     
 }

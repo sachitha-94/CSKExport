@@ -63,7 +63,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="New" min="-2" pref="337" max="-2" attributes="0"/>
-                  <EmptySpace pref="14" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -104,7 +104,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="0" pref="235" max="32767" attributes="0"/>
-                                  <Component id="enterButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="addButton" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -151,7 +151,7 @@
                               <Component id="priceNTextField" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="60" max="32767" attributes="0"/>
-                          <Component id="enterButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="addButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -204,7 +204,7 @@
                     <Property name="text" type="java.lang.String" value="Price Per 1 Kg"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="enterButton">
+                <Component class="javax.swing.JButton" name="addButton">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="66" red="33" type="rgb"/>
@@ -212,12 +212,12 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Nirmala UI" size="18" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Enter"/>
+                    <Property name="text" type="java.lang.String" value="Add"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enterButtonActionPerformed"/>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="enterButtonKeyPressed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addButtonActionPerformed"/>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="addButtonKeyPressed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -388,7 +388,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="prceRTextField" min="-2" pref="56" max="-2" attributes="0"/>
+                                          <Component id="priceRTextField" min="-2" pref="56" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace pref="103" max="32767" attributes="0"/>
@@ -418,7 +418,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="prceRTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="priceRTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="58" max="32767" attributes="0"/>
                           <Component id="removeButton" min="-2" max="-2" attributes="0"/>
@@ -457,13 +457,13 @@
                     <Property name="text" type="java.lang.String" value="Type :"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="prceRTextField">
+                <Component class="javax.swing.JTextField" name="priceRTextField">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="prceRTextFieldActionPerformed"/>
-                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="prceRTextFieldKeyReleased"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="priceRTextFieldActionPerformed"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="priceRTextFieldKeyReleased"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel4">

@@ -36,7 +36,7 @@ public class SupplierController {
     public static int editSuplier(Supplier supplier) throws ClassNotFoundException, SQLException {
 
         Connection conn = DBConnection.getInstance().getConnection();
-        PreparedStatement stm = conn.prepareStatement("UPDATE tab_suplier SET name=?,address=?,tp=? where nic=?");
+        PreparedStatement stm = conn.prepareStatement("UPDATE tab_supplier SET name=?,address=?,tp=? where nic=?");
         stm.setObject(1, supplier.getName());
         stm.setObject(2, supplier.getAddress());
         stm.setObject(3, supplier.getTp());
@@ -48,7 +48,7 @@ public class SupplierController {
 
     public static int removeSupplier(String nic) throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getInstance().getConnection();
-        PreparedStatement stm = conn.prepareStatement("DELETE FROM tab_suplier where nic=?");
+        PreparedStatement stm = conn.prepareStatement("DELETE FROM tab_supplier where nic=?");
         stm.setObject(1, nic);
         return stm.executeUpdate();
 
@@ -57,7 +57,7 @@ public class SupplierController {
     public static Supplier getSupplierFromNIC(String nic) throws ClassNotFoundException, SQLException {
 
         Connection conn = DBConnection.getInstance().getConnection();
-        PreparedStatement stm = conn.prepareStatement("SELECT * FROM tab_suplier where nic=?");
+        PreparedStatement stm = conn.prepareStatement("SELECT * FROM tab_supplier where nic=?");
         stm.setObject(1, nic);
         ResultSet rst = stm.executeQuery();
         if (rst.next()) {
@@ -122,7 +122,7 @@ public class SupplierController {
 
         Connection conn = DBConnection.getInstance().getConnection();
         Statement stm = conn.createStatement();
-        String sql = "SELECT * FROM employee ";
+        String sql = "SELECT * FROM tab_supplier ";
         ResultSet rst = stm.executeQuery(sql);
         ArrayList<Supplier> suppliers = new ArrayList<>();
         while (rst.next()) {

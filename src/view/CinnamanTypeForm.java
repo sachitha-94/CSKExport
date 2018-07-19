@@ -5,13 +5,14 @@
  */
 package view;
 
-
+import controller.CinnamonTypeController;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.CinnamonType;
 
 /**
  *
@@ -19,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CinnamanTypeForm extends javax.swing.JInternalFrame {
 
-//    static DefaultTableModel dtmSL;
+    static DefaultTableModel dtmCT;
 //
 //    private String passdate;
 
@@ -29,12 +30,12 @@ public class CinnamanTypeForm extends javax.swing.JInternalFrame {
     public CinnamanTypeForm() {
         initComponents();
 
-//        dtmSL = (DefaultTableModel) storeListTable.getModel();
+        dtmCT = (DefaultTableModel) cinnamonTypeListTable.getModel();
 //
 //        //get date from main form
 //        passdate = MainForm.passDate();
-//        //set Store table
-//        setStoreList();
+        //set Store table
+        setStoreList();
 //
 //        d_FTextField.setText(passdate);
 //        d_TTextField.setText(passdate);
@@ -42,18 +43,18 @@ public class CinnamanTypeForm extends javax.swing.JInternalFrame {
     }
 
     private static void setStoreList() {
-//        dtmSL.setRowCount(0);
-//
-//        try {
-//            ArrayList<Store> allStore = StoreController.getAll();
-//            for (Store store : allStore) {
-//                String ar[] = {store.getSid(), store.getName(), String.valueOf(store.getQuntity()), store.getDate()};
-//                dtmSL.addRow(ar);
-//
-//            }
-//        } catch (ClassNotFoundException | SQLException ex) {
-//            Logger.getLogger(CinnamanTypeForm.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        dtmCT.setRowCount(0);
+
+        try {
+            ArrayList<CinnamonType> allCinnamon = CinnamonTypeController.getAllCinnamon();
+            for (CinnamonType cinnamonType : allCinnamon) {
+                String ar[] = {cinnamonType.getCid(), cinnamonType.getType(), String.valueOf(cinnamonType.getPrice())};
+                dtmCT.addRow(ar);
+
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(CinnamanTypeForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -75,7 +76,7 @@ public class CinnamanTypeForm extends javax.swing.JInternalFrame {
         jLabel20 = new javax.swing.JLabel();
         priceNTextField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        enterButton = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         priceUTextField = new javax.swing.JTextField();
@@ -89,7 +90,7 @@ public class CinnamanTypeForm extends javax.swing.JInternalFrame {
         cidRTextField = new javax.swing.JTextField();
         typeRTextField = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        prceRTextField = new javax.swing.JTextField();
+        priceRTextField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         removeButton = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
@@ -136,18 +137,18 @@ public class CinnamanTypeForm extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         jLabel5.setText("Price Per 1 Kg");
 
-        enterButton.setBackground(new java.awt.Color(51, 102, 255));
-        enterButton.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
-        enterButton.setText("Enter");
-        enterButton.setEnabled(false);
-        enterButton.addActionListener(new java.awt.event.ActionListener() {
+        addButton.setBackground(new java.awt.Color(51, 102, 255));
+        addButton.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
+        addButton.setText("Add");
+        addButton.setEnabled(false);
+        addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enterButtonActionPerformed(evt);
+                addButtonActionPerformed(evt);
             }
         });
-        enterButton.addKeyListener(new java.awt.event.KeyAdapter() {
+        addButton.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                enterButtonKeyPressed(evt);
+                addButtonKeyPressed(evt);
             }
         });
 
@@ -160,7 +161,7 @@ public class CinnamanTypeForm extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 235, Short.MAX_VALUE)
-                        .addComponent(enterButton))
+                        .addComponent(addButton))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -194,7 +195,7 @@ public class CinnamanTypeForm extends javax.swing.JInternalFrame {
                     .addComponent(jLabel5)
                     .addComponent(priceNTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                .addComponent(enterButton)
+                .addComponent(addButton)
                 .addContainerGap())
         );
 
@@ -317,15 +318,15 @@ public class CinnamanTypeForm extends javax.swing.JInternalFrame {
         jLabel18.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         jLabel18.setText("Type :");
 
-        prceRTextField.setEditable(false);
-        prceRTextField.addActionListener(new java.awt.event.ActionListener() {
+        priceRTextField.setEditable(false);
+        priceRTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prceRTextFieldActionPerformed(evt);
+                priceRTextFieldActionPerformed(evt);
             }
         });
-        prceRTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+        priceRTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                prceRTextFieldKeyReleased(evt);
+                priceRTextFieldKeyReleased(evt);
             }
         });
 
@@ -367,7 +368,7 @@ public class CinnamanTypeForm extends javax.swing.JInternalFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(prceRTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(priceRTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(103, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -388,7 +389,7 @@ public class CinnamanTypeForm extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(prceRTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(priceRTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(removeButton)
                 .addContainerGap())
@@ -403,7 +404,7 @@ public class CinnamanTypeForm extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(New, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -497,8 +498,8 @@ public class CinnamanTypeForm extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void priceUTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceUTextFieldActionPerformed
-//        upDateButton.setEnabled(true);
-//        nStockUTextField.requestFocus();
+
+        upDateButton.requestFocus();
     }//GEN-LAST:event_priceUTextFieldActionPerformed
 
     private void priceUTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_priceUTextFieldKeyReleased
@@ -506,262 +507,224 @@ public class CinnamanTypeForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_priceUTextFieldKeyReleased
 
     private void cidUTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cidUTextFieldActionPerformed
-//        String sid = sidUTextField.getText();
-//        if (!"".equals(sid)) {
-//            try {
-//                Store searchBySid = StoreController.searchBySid(sid);
-//                if (searchBySid != null) {
-//
-//                    nameUTextField.setEditable(true);
-//                    quntityUTextField.setEditable(true);
-//                    nStockUTextField.setEditable(true);
-//
-//                    quntityUTextField.requestFocus();
-//
-//                    nameUTextField.setText(searchBySid.getName());
-//                    quntityUTextField.setText(String.valueOf(searchBySid.getQuntity()));
-//
-//                } else {
-//                    sidUTextField.setText("");
-//                    nameUTextField.setText("");
-//                    quntityUTextField.setText("");
-//                    nStockUTextField.setText("");
-//                    JOptionPane.showMessageDialog(sidUTextField, "invalid sid.");
-//
-//                }
-//            } catch (ClassNotFoundException | SQLException ex) {
-//                Logger.getLogger(CinnamanTypeForm.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//
-//        } else {
-//            JOptionPane.showMessageDialog(sidUTextField, "Type Sid.");
-//
-//        }
+        String cid = cidUTextField.getText();
+        if (!"".equals(cid)) {
+
+            try {
+                CinnamonType cinnamonType = CinnamonTypeController.getCinnamonFromCID(cid);
+                if (cinnamonType != null) {
+                    typeUTextField.setEditable(true);
+                    priceUTextField.setEditable(true);
+
+                    typeUTextField.setText(cinnamonType.getType());
+                    priceUTextField.setText(String.valueOf(cinnamonType.getPrice()));
+                    
+                    upDateButton.setEnabled(true);
+
+                    typeUTextField.requestFocus();
+
+                } else {
+                    JOptionPane.showMessageDialog(cidUTextField, "This Cinnamaon ID not Valid.");
+                }
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(SupplierForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(cidUTextField, "Enter Cinnamon ID.");
+        }
+
     }//GEN-LAST:event_cidUTextFieldActionPerformed
 
     private void typeUTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeUTextFieldActionPerformed
-        // TODO add your handling code here:
+        priceUTextField.requestFocus();
     }//GEN-LAST:event_typeUTextFieldActionPerformed
 
     private void cidRTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cidRTextFieldActionPerformed
-//        String sid = sidRTextField.getText();
-//        if (!"".equals(sid)) {
-//            try {
-//                Store searchBySid = StoreController.searchBySid(sid);
-//                if (searchBySid != null) {
-//
-//                    nameRTextField.setText(searchBySid.getName());
-//                    quntityRTextField.setText(String.valueOf(searchBySid.getQuntity()));
-//
-//                    removeButton.setEnabled(true);
-//
-//                } else {
-//                    sidRTextField.setText("");
-//                    nameRTextField.setText("");
-//                    quntityRTextField.setText("");
-//                    JOptionPane.showMessageDialog(sidRTextField, "invalid sid.");
-//
-//                }
-//            } catch (ClassNotFoundException | SQLException ex) {
-//                Logger.getLogger(CinnamanTypeForm.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//
-//        } else {
-//            JOptionPane.showMessageDialog(sidRTextField, "Type Sid.");
-//
-//        }
+        String cid = cidRTextField.getText();
+        if (!"".equals(cid)) {
+
+            try {
+                CinnamonType cinnamonType = CinnamonTypeController.getCinnamonFromCID(cid);
+                if (cinnamonType != null) {
+
+                    typeRTextField.setText(cinnamonType.getType());
+                    priceRTextField.setText(String.valueOf(cinnamonType.getPrice()));
+                    removeButton.setEnabled(true);
+
+                    typeRTextField.requestFocus();
+
+                } else {
+                    JOptionPane.showMessageDialog(cidRTextField, "This Cinnamaon ID not Valid.");
+                }
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(SupplierForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(cidRTextField, "Enter Cinnamon ID.");
+        }
     }//GEN-LAST:event_cidRTextFieldActionPerformed
 
     private void typeRTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeRTextFieldActionPerformed
-        // TODO add your handling code here:
+ 
     }//GEN-LAST:event_typeRTextFieldActionPerformed
 
-    private void prceRTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prceRTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_prceRTextFieldActionPerformed
+    private void priceRTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceRTextFieldActionPerformed
 
-    private void prceRTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_prceRTextFieldKeyReleased
+    }//GEN-LAST:event_priceRTextFieldActionPerformed
+
+    private void priceRTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_priceRTextFieldKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_prceRTextFieldKeyReleased
+    }//GEN-LAST:event_priceRTextFieldKeyReleased
 
     private void cidNTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cidNTextFieldActionPerformed
-//        String sid = sidNTextField.getText();
-//        if (!"".equals(sid)) {
-//            try {
-//                String checksid = StoreController.checksid(sid);
-//                if (checksid == null) {
-//
-//                    nameNTextField.setEditable(true);
-//                    nameNTextField.requestFocus();
-//
-//                } else {
-//
-//                    JOptionPane.showMessageDialog(sidNTextField, "this sid already added.");
-//
-//                }
-//            } catch (ClassNotFoundException | SQLException ex) {
-//                Logger.getLogger(CinnamanTypeForm.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//
-//        } else {
-//            JOptionPane.showMessageDialog(sidNTextField, "Type Sid.");
-//
-//        }
+        String cid = cidNTextField.getText();
+        if (!"".equals(cid)) {
+
+            try {
+                CinnamonType cinnamonType = CinnamonTypeController.getCinnamonFromCID(cid);
+                if (cinnamonType == null) {
+                    cidNTextField.setEditable(true);
+                    typeNTextField.setEditable(true);
+                    priceNTextField.setEditable(true);
+
+                    typeNTextField.requestFocus();
+
+                } else {
+                    JOptionPane.showMessageDialog(cidNTextField, "This Cinnamaon ID already Added.");
+                }
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(SupplierForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(cidNTextField, "Enter Cinnamon ID.");
+        }
+
 
     }//GEN-LAST:event_cidNTextFieldActionPerformed
 
     private void typeNTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeNTextFieldActionPerformed
-//        String text = nameNTextField.getText();
-//        if (!"".equals(text)) {
-//            quntityNTextField.setEditable(true);
-//            quntityNTextField.requestFocus();
-//        } else {
-//            JOptionPane.showMessageDialog(nameNTextField, "Type name.");
-//        }
-
+        priceNTextField.requestFocus();
     }//GEN-LAST:event_typeNTextFieldActionPerformed
 
     private void priceNTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceNTextFieldActionPerformed
-//        String text = quntityNTextField.getText();
-//        if (!"".equals(text)) {
-//            enterButton.setEnabled(true);
-//            enterButton.requestFocus();
-//        } else {
-//            JOptionPane.showMessageDialog(quntityNTextField, "Type quantiy.");
-//        }
-//        enterButton.requestFocus();
+        String price = priceNTextField.getText();
+        if (!"".equals(price)) {
+            addButton.setEnabled(true);
+            addButton.requestFocus();
+        } else {
+            JOptionPane.showMessageDialog(priceNTextField, "Enter Price per 1 Kg");
+        }
+
     }//GEN-LAST:event_priceNTextFieldActionPerformed
 
     private void priceNTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_priceNTextFieldKeyReleased
 //        CheckNumber.checkDecimal(quntityNTextField);
     }//GEN-LAST:event_priceNTextFieldKeyReleased
 
-    private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterButtonActionPerformed
-//        String sid = sidNTextField.getText();
-//        String name = nameNTextField.getText();
-//        String qty = quntityNTextField.getText();
-//
-//        if (!"".equals(sid) & !"".equals(name) & !"".equals(qty)) {
-//            Store store = new Store(sid, name, Double.parseDouble(qty), "");
-//            try {
-//                int addNew = StoreController.addNew(store);
-//                if (addNew > 0) {
-//
-//                    //refresh store list
-//                    setStoreList();
-//
-//                    nameNTextField.setEditable(false);
-//                    quntityNTextField.setEditable(false);
-//
-//                    enterButton.setEnabled(false);
-//
-//                    sidNTextField.setText("");
-//                    nameNTextField.setText("");
-//                    quntityNTextField.setText("");
-//
-//                    JOptionPane.showMessageDialog(enterButton, "New Store Item entered.");
-//                } else {
-//                    JOptionPane.showMessageDialog(enterButton, "Try Again.");
-//                }
-//            } catch (ClassNotFoundException | SQLException ex) {
-//                Logger.getLogger(CinnamanTypeForm.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(enterButton, "Enter the all Data.");
-//        }
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        String cid = cidNTextField.getText();
+        String type = typeNTextField.getText();
+        String price = priceNTextField.getText();
 
-    }//GEN-LAST:event_enterButtonActionPerformed
+        if (!"".equals(cid) & !"".equals(type) & !"".equals(price)) {
+            CinnamonType cinnamonType = new CinnamonType(cid, type, Double.parseDouble(price));
+            try {
+                int addType = CinnamonTypeController.addType(cinnamonType);
+                if (addType > 0) {
+
+                    //refresh store list
+                    setStoreList();
+
+                    typeNTextField.setEditable(false);
+                    priceNTextField.setEditable(false);
+
+                    addButton.setEnabled(false);
+
+                    cidNTextField.setText("");
+                    typeNTextField.setText("");
+                    priceNTextField.setText("");
+
+                    JOptionPane.showMessageDialog(addButton, "New Cinnamon Type entered.");
+                } else {
+                    JOptionPane.showMessageDialog(addButton, "Try Again.");
+                }
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(CinnamanTypeForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(addButton, "Enter the all Data.");
+        }
+
+    }//GEN-LAST:event_addButtonActionPerformed
 
     private void upDateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upDateButtonActionPerformed
-//        String sid = sidUTextField.getText();
-//        String qtyOH = quntityUTextField.getText();
-//        String nStock = nStockUTextField.getText();
-//
-//        Store store;
-//        if (!"".equals(sid) & !"".equals(qtyOH)) {
-//            try {
-//                if ("".equals(nStock)) {
-//                    store = new Store(sid, null, Double.valueOf(qtyOH), "");
-//
-//                    int upDateQuntity = StoreController.upDateQuntity(store);
-//                    if (upDateQuntity > 0) {
-//                        //refresh store list
-//                        setStoreList();
-//
-//                        nameUTextField.setEditable(false);
-//                        quntityUTextField.setEditable(false);
-//                        nStockUTextField.setEditable(false);
-//
-//                        upDateButton.setEnabled(false);
-//
-//                        sidUTextField.setText("");
-//                        nameUTextField.setText("");
-//                        quntityUTextField.setText("");
-//                        nStockUTextField.setText("");
-//                        JOptionPane.showMessageDialog(upDateButton, "Updated.");
-//
-//                    } else {
-//                        JOptionPane.showMessageDialog(upDateButton, "Try Again.");
-//                    }
-//
-//                } else {
-//                    store = new Store(sid, null, (Double.valueOf(qtyOH) + Double.valueOf(nStock)), "");
-//
-//                    int upDateQuntity = StoreController.upDateQuntity(store);
-//                    if (upDateQuntity > 0) {
-//
-//                        //refresh store list
-//                        setStoreList();
-//
-//                        JOptionPane.showMessageDialog(rootPane, "Updated.");
-//
-//                        sidUTextField.setText("");
-//                        nameUTextField.setText("");
-//                        quntityUTextField.setText("");
-//                        nStockUTextField.setText("");
-//
-//                    } else {
-//                        JOptionPane.showMessageDialog(rootPane, "Try Again.");
-//                    }
-//                }
-//            } catch (ClassNotFoundException | SQLException ex) {
-//                Logger.getLogger(CinnamanTypeForm.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        } else {
-//
-//        }
+        String cid = cidUTextField.getText();
+        String type = typeUTextField.getText();
+        String price = priceUTextField.getText();
+
+        if (!"".equals(cid) & !"".equals(type) & !"".equals(price)) {
+            CinnamonType cinnamonType = new CinnamonType(cid, type, Double.parseDouble(price));
+            try {
+                int editType = CinnamonTypeController.editType(cinnamonType);
+                if (editType > 0) {
+
+                    //refresh store list
+                    setStoreList();
+
+                    typeUTextField.setEditable(false);
+                    priceUTextField.setEditable(false);
+
+                    upDateButton.setEnabled(false);
+
+                    cidUTextField.setText("");
+                    typeUTextField.setText("");
+                    priceUTextField.setText("");
+
+                    JOptionPane.showMessageDialog(upDateButton, "Cinnamon Type Updated.");
+                } else {
+                    JOptionPane.showMessageDialog(upDateButton, "Try Again.");
+                }
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(CinnamanTypeForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(upDateButton, "Enter the all Data.");
+        }
 
 
     }//GEN-LAST:event_upDateButtonActionPerformed
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
-//        String sid = sidRTextField.getText();
-//        if (!"".equals(sid)) {
-//            try {
-//                int removeBySid = StoreController.removeBySid(sid);
-//                if (removeBySid > 0) {
-//
-//                    //refresh store list
-//                    setStoreList();
-//
-//                    sidRTextField.setText("");
-//                    nameRTextField.setText("");
-//                    quntityRTextField.setText("");
-//
-//                    sidRTextField.requestFocus();
-//                    removeButton.setEnabled(false);
-//
-//                    JOptionPane.showMessageDialog(removeButton, "removed");
-//
-//                } else {
-//                    JOptionPane.showMessageDialog(removeButton, "try again");
-//                }
-//            } catch (ClassNotFoundException | SQLException ex) {
-//                Logger.getLogger(CinnamanTypeForm.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(removeButton, "Type IID");
-//        }
+        String cid = cidRTextField.getText();
+        if (!"".equals(cid)) {
+            try {
+                int removeType = CinnamonTypeController.removeType(cid);
+                if (removeType > 0) {
+
+                    //refresh store list
+                    setStoreList();
+
+                    cidRTextField.setText("");
+                    typeRTextField.setText("");
+                    priceRTextField.setText("");
+
+                    removeButton.requestFocus();
+                    removeButton.setEnabled(false);
+
+                    JOptionPane.showMessageDialog(removeButton, "removed");
+
+                } else {
+                    JOptionPane.showMessageDialog(removeButton, "try again");
+                }
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(CinnamanTypeForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(removeButton, "Type IID");
+        }
     }//GEN-LAST:event_removeButtonActionPerformed
 
     private void cinnamonTypeListTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cinnamonTypeListTableMousePressed
@@ -784,7 +747,7 @@ public class CinnamanTypeForm extends javax.swing.JInternalFrame {
 //        }
     }//GEN-LAST:event_cinnamonTypeListTableMousePressed
 
-    private void enterButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_enterButtonKeyPressed
+    private void addButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_addButtonKeyPressed
 
 //        String sid = sidNTextField.getText();
 //        String name = nameNTextField.getText();
@@ -819,7 +782,7 @@ public class CinnamanTypeForm extends javax.swing.JInternalFrame {
 //            JOptionPane.showMessageDialog(enterButton, "Enter the all Data.");
 //        }
 
-    }//GEN-LAST:event_enterButtonKeyPressed
+    }//GEN-LAST:event_addButtonKeyPressed
 
     private void upDateButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_upDateButtonKeyPressed
 //        String sid = sidUTextField.getText();
@@ -918,11 +881,11 @@ public class CinnamanTypeForm extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane New;
+    private javax.swing.JButton addButton;
     private javax.swing.JTextField cidNTextField;
     private javax.swing.JTextField cidRTextField;
     private javax.swing.JTextField cidUTextField;
     private static javax.swing.JTable cinnamonTypeListTable;
-    private javax.swing.JButton enterButton;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -940,8 +903,8 @@ public class CinnamanTypeForm extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField prceRTextField;
     private javax.swing.JTextField priceNTextField;
+    private javax.swing.JTextField priceRTextField;
     private javax.swing.JTextField priceUTextField;
     private javax.swing.JButton removeButton;
     private javax.swing.JTextField typeNTextField;

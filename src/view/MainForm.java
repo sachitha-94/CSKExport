@@ -5,6 +5,15 @@
  */
 package view;
 
+import controller.CinnamonTypeController;
+import db.DBConnection;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.CinnamonType;
+import model.Payment;
+
 /**
  *
  * @author Sachitha
@@ -16,6 +25,7 @@ public class MainForm extends javax.swing.JFrame {
      */
     public MainForm() {
         initComponents();
+
     }
 
 ////    /**
@@ -28,36 +38,32 @@ public class MainForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        addButton1 = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        orderTable1 = new javax.swing.JTable();
-        sidTextField1 = new javax.swing.JTextField();
+        orderTable = new javax.swing.JTable();
+        grosssWTextField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        quantityTextField3 = new javax.swing.JTextField();
-        quantityTextField4 = new javax.swing.JTextField();
-        itemComboBox1 = new javax.swing.JComboBox();
+        paymentNoTextField = new javax.swing.JTextField();
+        reduceWTextField = new javax.swing.JTextField();
+        cinnamonTypeComboBox = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
-        quantityTextField5 = new javax.swing.JTextField();
+        wetWTextField = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        chequeCheckBox = new javax.swing.JCheckBox();
         jLabel16 = new javax.swing.JLabel();
-        sidTextField2 = new javax.swing.JTextField();
+        chequeTextField = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        sidTextField3 = new javax.swing.JTextField();
-        sidTextField4 = new javax.swing.JTextField();
+        nicTextField = new javax.swing.JTextField();
+        bankNameTextField = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         newSupplierButton = new javax.swing.JButton();
         payButton = new javax.swing.JButton();
         totalTextField = new javax.swing.JTextField();
-        cashTextField = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        balanceTextField = new javax.swing.JTextField();
-        jLabel20 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         dashBordButton = new javax.swing.JButton();
@@ -65,24 +71,24 @@ public class MainForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        addButton1.setFont(new java.awt.Font("Nirmala UI", 1, 24)); // NOI18N
-        addButton1.setText("ADD");
-        addButton1.addActionListener(new java.awt.event.ActionListener() {
+        addButton.setFont(new java.awt.Font("Nirmala UI", 1, 24)); // NOI18N
+        addButton.setText("ADD");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addButton1ActionPerformed(evt);
+                addButtonActionPerformed(evt);
             }
         });
-        addButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+        addButton.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                addButton1KeyPressed(evt);
+                addButtonKeyPressed(evt);
             }
         });
 
         jLabel21.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         jLabel21.setText("Reduce Weight");
 
-        orderTable1.setFont(new java.awt.Font("Nirmala UI", 0, 14)); // NOI18N
-        orderTable1.setModel(new javax.swing.table.DefaultTableModel(
+        orderTable.setFont(new java.awt.Font("Nirmala UI", 0, 14)); // NOI18N
+        orderTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -90,86 +96,86 @@ public class MainForm extends javax.swing.JFrame {
                 "Cynnamon Type", "Gross Weight", "Wet Weight", "Reduce Weight", "Amount"
             }
         ));
-        jScrollPane2.setViewportView(orderTable1);
+        jScrollPane2.setViewportView(orderTable);
 
-        sidTextField1.addActionListener(new java.awt.event.ActionListener() {
+        grosssWTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sidTextField1ActionPerformed(evt);
+                grosssWTextFieldActionPerformed(evt);
             }
         });
-        sidTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        grosssWTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                sidTextField1KeyPressed(evt);
+                grosssWTextFieldKeyPressed(evt);
             }
         });
 
         jLabel5.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         jLabel5.setText("Payment No:");
 
-        quantityTextField3.setEnabled(false);
-        quantityTextField3.addActionListener(new java.awt.event.ActionListener() {
+        paymentNoTextField.setEnabled(false);
+        paymentNoTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quantityTextField3ActionPerformed(evt);
+                paymentNoTextFieldActionPerformed(evt);
             }
         });
-        quantityTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+        paymentNoTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                quantityTextField3KeyPressed(evt);
+                paymentNoTextFieldKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                quantityTextField3KeyReleased(evt);
+                paymentNoTextFieldKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                quantityTextField3KeyTyped(evt);
+                paymentNoTextFieldKeyTyped(evt);
             }
         });
 
-        quantityTextField4.addActionListener(new java.awt.event.ActionListener() {
+        reduceWTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quantityTextField4ActionPerformed(evt);
+                reduceWTextFieldActionPerformed(evt);
             }
         });
-        quantityTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+        reduceWTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                quantityTextField4KeyPressed(evt);
+                reduceWTextFieldKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                quantityTextField4KeyReleased(evt);
+                reduceWTextFieldKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                quantityTextField4KeyTyped(evt);
+                reduceWTextFieldKeyTyped(evt);
             }
         });
 
-        itemComboBox1.setEditable(true);
-        itemComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cinnamonTypeComboBox.setEditable(true);
+        cinnamonTypeComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemComboBox1ActionPerformed(evt);
+                cinnamonTypeComboBoxActionPerformed(evt);
             }
         });
-        itemComboBox1.addKeyListener(new java.awt.event.KeyAdapter() {
+        cinnamonTypeComboBox.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                itemComboBox1KeyPressed(evt);
+                cinnamonTypeComboBoxKeyPressed(evt);
             }
         });
 
         jLabel6.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         jLabel6.setText("Cynnamon Type");
 
-        quantityTextField5.addActionListener(new java.awt.event.ActionListener() {
+        wetWTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quantityTextField5ActionPerformed(evt);
+                wetWTextFieldActionPerformed(evt);
             }
         });
-        quantityTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+        wetWTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                quantityTextField5KeyPressed(evt);
+                wetWTextFieldKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                quantityTextField5KeyReleased(evt);
+                wetWTextFieldKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                quantityTextField5KeyTyped(evt);
+                wetWTextFieldKeyTyped(evt);
             }
         });
 
@@ -190,7 +196,7 @@ public class MainForm extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(quantityTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(paymentNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,21 +204,21 @@ public class MainForm extends javax.swing.JFrame {
                                 .addComponent(jLabel6)
                                 .addGap(21, 21, 21))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(itemComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cinnamonTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15)
-                            .addComponent(sidTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(grosssWTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel23)
-                            .addComponent(quantityTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(wetWTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(quantityTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(reduceWTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel21))
                         .addGap(27, 27, 27)
-                        .addComponent(addButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)))
+                        .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -221,7 +227,7 @@ public class MainForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(quantityTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(paymentNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
@@ -232,11 +238,11 @@ public class MainForm extends javax.swing.JFrame {
                             .addComponent(jLabel21))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(quantityTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sidTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(itemComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(quantityTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(addButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(wetWTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(grosssWTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cinnamonTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(reduceWTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                 .addGap(12, 12, 12))
@@ -245,44 +251,46 @@ public class MainForm extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         jLabel7.setText("Payment");
 
-        jCheckBox1.setText("Cheque");
+        chequeCheckBox.setText("Cheque");
 
         jLabel16.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         jLabel16.setText("Cheque No");
 
-        sidTextField2.addActionListener(new java.awt.event.ActionListener() {
+        chequeTextField.setEnabled(false);
+        chequeTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sidTextField2ActionPerformed(evt);
+                chequeTextFieldActionPerformed(evt);
             }
         });
-        sidTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+        chequeTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                sidTextField2KeyPressed(evt);
+                chequeTextFieldKeyPressed(evt);
             }
         });
 
         jLabel17.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         jLabel17.setText("NIC");
 
-        sidTextField3.addActionListener(new java.awt.event.ActionListener() {
+        nicTextField.setEnabled(false);
+        nicTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sidTextField3ActionPerformed(evt);
+                nicTextFieldActionPerformed(evt);
             }
         });
-        sidTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+        nicTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                sidTextField3KeyPressed(evt);
+                nicTextFieldKeyPressed(evt);
             }
         });
 
-        sidTextField4.addActionListener(new java.awt.event.ActionListener() {
+        bankNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sidTextField4ActionPerformed(evt);
+                bankNameTextFieldActionPerformed(evt);
             }
         });
-        sidTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+        bankNameTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                sidTextField4KeyPressed(evt);
+                bankNameTextFieldKeyPressed(evt);
             }
         });
 
@@ -297,7 +305,7 @@ public class MainForm extends javax.swing.JFrame {
         });
 
         payButton.setFont(new java.awt.Font("Nirmala UI", 1, 48)); // NOI18N
-        payButton.setText("Print");
+        payButton.setText("Pay/Print");
         payButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 payButtonActionPerformed(evt);
@@ -313,35 +321,8 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
-        cashTextField.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        cashTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cashTextFieldActionPerformed(evt);
-            }
-        });
-        cashTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cashTextFieldKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                cashTextFieldKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                cashTextFieldKeyTyped(evt);
-            }
-        });
-
         jLabel8.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         jLabel8.setText("Total :");
-
-        jLabel19.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
-        jLabel19.setText("Balance :");
-
-        balanceTextField.setEditable(false);
-        balanceTextField.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-
-        jLabel20.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
-        jLabel20.setText("Cash :");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -357,29 +338,23 @@ public class MainForm extends javax.swing.JFrame {
                             .addComponent(jLabel17))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(sidTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sidTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nicTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(chequeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(newSupplierButton)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sidTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jCheckBox1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel20)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(balanceTextField)
-                    .addComponent(cashTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(totalTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(bankNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(chequeCheckBox))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 330, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addGap(24, 24, 24)
+                .addComponent(totalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                    .addGap(212, 212, 212)
-                    .addComponent(payButton, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
+                    .addContainerGap(243, Short.MAX_VALUE)
+                    .addComponent(payButton, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap()))
         );
         jPanel2Layout.setVerticalGroup(
@@ -390,39 +365,30 @@ public class MainForm extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox1)
+                        .addComponent(chequeCheckBox)
                         .addGap(29, 29, 29)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
-                            .addComponent(sidTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(chequeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel17)
-                            .addComponent(sidTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(totalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel20)
-                            .addComponent(cashTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel19)
-                            .addComponent(balanceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(nicTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(totalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8)))
                 .addGap(2, 2, 2)
                 .addComponent(newSupplierButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
-                    .addComponent(sidTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bankNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(23, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(127, 127, 127)
                     .addComponent(payButton)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(49, Short.MAX_VALUE)))
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -507,101 +473,136 @@ public class MainForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addButton1ActionPerformed
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        String cinnamanType = (String) cinnamonTypeComboBox.getSelectedItem();
+        String grossWeightStr = grosssWTextField.getText();
+        String wetWeightStr = wetWTextField.getText();
+        String reduceWeightStr = reduceWTextField.getText();
+        if (!cinnamanType.equals("") && !grossWeightStr.equals("")) {
+            double grossWeight = 0;
+            double wetWeight = 0;
+            double reduceWeight = 0;
+            CinnamonType cidAndPriceFromType = null;
+            if (!wetWeightStr.equals("")) {
+                wetWeight = Double.parseDouble(wetWeightStr);
+            }
+            if (!reduceWeightStr.equals("")) {
+                reduceWeight = Double.parseDouble(reduceWeightStr);
+            }
+            //get price per 1 kg
+            try {
 
-    private void addButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_addButton1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addButton1KeyPressed
+                cidAndPriceFromType = CinnamonTypeController.getCidAndPriceFromType(cinnamanType);
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-    private void sidTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sidTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_sidTextField1ActionPerformed
+            if (cidAndPriceFromType != null) {
+                Payment payment = new Payment();
+                payment.setGrossWeight(grossWeight);
+                payment.setReduceWeight(reduceWeight);
+                payment.setWetWeight(wetWeight);
+                if(chequeCheckBox.isSelected()){
+                    
+                }
+            } else {
+            }
 
-    private void sidTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sidTextField1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_sidTextField1KeyPressed
+        } else {
+        }
+    }//GEN-LAST:event_addButtonActionPerformed
 
-    private void quantityTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityTextField3ActionPerformed
+    private void addButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_addButtonKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_quantityTextField3ActionPerformed
+    }//GEN-LAST:event_addButtonKeyPressed
 
-    private void quantityTextField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantityTextField3KeyPressed
+    private void grosssWTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grosssWTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_quantityTextField3KeyPressed
+    }//GEN-LAST:event_grosssWTextFieldActionPerformed
 
-    private void quantityTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantityTextField3KeyReleased
+    private void grosssWTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_grosssWTextFieldKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_quantityTextField3KeyReleased
+    }//GEN-LAST:event_grosssWTextFieldKeyPressed
 
-    private void quantityTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantityTextField3KeyTyped
+    private void paymentNoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentNoTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_quantityTextField3KeyTyped
+    }//GEN-LAST:event_paymentNoTextFieldActionPerformed
 
-    private void quantityTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityTextField4ActionPerformed
+    private void paymentNoTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_paymentNoTextFieldKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_quantityTextField4ActionPerformed
+    }//GEN-LAST:event_paymentNoTextFieldKeyPressed
 
-    private void quantityTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantityTextField4KeyPressed
+    private void paymentNoTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_paymentNoTextFieldKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_quantityTextField4KeyPressed
+    }//GEN-LAST:event_paymentNoTextFieldKeyReleased
 
-    private void quantityTextField4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantityTextField4KeyReleased
+    private void paymentNoTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_paymentNoTextFieldKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_quantityTextField4KeyReleased
+    }//GEN-LAST:event_paymentNoTextFieldKeyTyped
 
-    private void quantityTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantityTextField4KeyTyped
+    private void reduceWTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reduceWTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_quantityTextField4KeyTyped
+    }//GEN-LAST:event_reduceWTextFieldActionPerformed
 
-    private void itemComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemComboBox1ActionPerformed
+    private void reduceWTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_reduceWTextFieldKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_itemComboBox1ActionPerformed
+    }//GEN-LAST:event_reduceWTextFieldKeyPressed
 
-    private void itemComboBox1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_itemComboBox1KeyPressed
+    private void reduceWTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_reduceWTextFieldKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_itemComboBox1KeyPressed
+    }//GEN-LAST:event_reduceWTextFieldKeyReleased
 
-    private void quantityTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityTextField5ActionPerformed
+    private void reduceWTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_reduceWTextFieldKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_quantityTextField5ActionPerformed
+    }//GEN-LAST:event_reduceWTextFieldKeyTyped
 
-    private void quantityTextField5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantityTextField5KeyPressed
+    private void cinnamonTypeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cinnamonTypeComboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_quantityTextField5KeyPressed
+    }//GEN-LAST:event_cinnamonTypeComboBoxActionPerformed
 
-    private void quantityTextField5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantityTextField5KeyReleased
+    private void cinnamonTypeComboBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cinnamonTypeComboBoxKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_quantityTextField5KeyReleased
+    }//GEN-LAST:event_cinnamonTypeComboBoxKeyPressed
 
-    private void quantityTextField5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantityTextField5KeyTyped
+    private void wetWTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wetWTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_quantityTextField5KeyTyped
+    }//GEN-LAST:event_wetWTextFieldActionPerformed
 
-    private void sidTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sidTextField2ActionPerformed
+    private void wetWTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_wetWTextFieldKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_sidTextField2ActionPerformed
+    }//GEN-LAST:event_wetWTextFieldKeyPressed
 
-    private void sidTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sidTextField2KeyPressed
+    private void wetWTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_wetWTextFieldKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_sidTextField2KeyPressed
+    }//GEN-LAST:event_wetWTextFieldKeyReleased
 
-    private void sidTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sidTextField3ActionPerformed
+    private void wetWTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_wetWTextFieldKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_sidTextField3ActionPerformed
+    }//GEN-LAST:event_wetWTextFieldKeyTyped
 
-    private void sidTextField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sidTextField3KeyPressed
+    private void chequeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chequeTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_sidTextField3KeyPressed
+    }//GEN-LAST:event_chequeTextFieldActionPerformed
 
-    private void sidTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sidTextField4ActionPerformed
+    private void chequeTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_chequeTextFieldKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_sidTextField4ActionPerformed
+    }//GEN-LAST:event_chequeTextFieldKeyPressed
 
-    private void sidTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sidTextField4KeyPressed
+    private void nicTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nicTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_sidTextField4KeyPressed
+    }//GEN-LAST:event_nicTextFieldActionPerformed
+
+    private void nicTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nicTextFieldKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nicTextFieldKeyPressed
+
+    private void bankNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bankNameTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bankNameTextFieldActionPerformed
+
+    private void bankNameTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bankNameTextFieldKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bankNameTextFieldKeyPressed
 
     private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payButtonActionPerformed
 //        int rowCount = orderTable.getRowCount();
@@ -637,22 +638,6 @@ public class MainForm extends javax.swing.JFrame {
     private void totalTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_totalTextFieldActionPerformed
-
-    private void cashTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashTextFieldActionPerformed
-
-    }//GEN-LAST:event_cashTextFieldActionPerformed
-
-    private void cashTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cashTextFieldKeyPressed
-
-    }//GEN-LAST:event_cashTextFieldKeyPressed
-
-    private void cashTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cashTextFieldKeyReleased
-
-    }//GEN-LAST:event_cashTextFieldKeyReleased
-
-    private void cashTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cashTextFieldKeyTyped
-
-    }//GEN-LAST:event_cashTextFieldKeyTyped
 
     private void dashBordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashBordButtonActionPerformed
 
@@ -710,19 +695,18 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addButton1;
-    private javax.swing.JTextField balanceTextField;
-    private javax.swing.JTextField cashTextField;
+    private javax.swing.JButton addButton;
+    private javax.swing.JTextField bankNameTextField;
+    private javax.swing.JCheckBox chequeCheckBox;
+    private javax.swing.JTextField chequeTextField;
+    private javax.swing.JComboBox cinnamonTypeComboBox;
     private javax.swing.JButton dashBordButton;
-    private javax.swing.JComboBox itemComboBox1;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JTextField grosssWTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel5;
@@ -735,15 +719,12 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JDesktopPane mainDesktopPane;
     private javax.swing.JButton newSupplierButton;
-    private javax.swing.JTable orderTable1;
+    private javax.swing.JTextField nicTextField;
+    private javax.swing.JTable orderTable;
     private javax.swing.JButton payButton;
-    private javax.swing.JTextField quantityTextField3;
-    private javax.swing.JTextField quantityTextField4;
-    private javax.swing.JTextField quantityTextField5;
-    private javax.swing.JTextField sidTextField1;
-    private javax.swing.JTextField sidTextField2;
-    private javax.swing.JTextField sidTextField3;
-    private javax.swing.JTextField sidTextField4;
+    private javax.swing.JTextField paymentNoTextField;
+    private javax.swing.JTextField reduceWTextField;
     private static javax.swing.JTextField totalTextField;
+    private javax.swing.JTextField wetWTextField;
     // End of variables declaration//GEN-END:variables
 }

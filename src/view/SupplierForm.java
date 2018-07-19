@@ -5,12 +5,14 @@
  */
 package view;
 
+import controller.SupplierController;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.Supplier;
 
 /**
  *
@@ -18,11 +20,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class SupplierForm extends javax.swing.JInternalFrame {
 
-//    private String passDate;
-//    DefaultTableModel dtmEL;
-//    DefaultTableModel dtmWD;
-//    DefaultTableModel dtmWT;
-//    DefaultTableModel dtmAL;
+    private DefaultTableModel dtmSL;
 
     /**
      * Creates new form AdminEmployeeForm
@@ -36,22 +34,19 @@ public class SupplierForm extends javax.swing.JInternalFrame {
 //        t_TextField.setText(passDate);
 //        dateSalaryTextField.setText(passDate);
 //
-//        dtmEL = (DefaultTableModel) employeeListTable.getModel();
-//        dtmWD = (DefaultTableModel) wrkdTable.getModel();
-//        dtmWT = (DefaultTableModel) wrkTTable.getModel();
-//        dtmAL = (DefaultTableModel) salaryTable.getModel();
-//
-//        try {
-//            ArrayList<Employee> allEmployee = EmployeeController.getAllEmployee();
-//            for (Employee employee : allEmployee) {
-//                String ar[] = {employee.getEid(), employee.getName(), employee.getAddress(), String.valueOf(employee.getTpNo())};
-//                dtmEL.addRow(ar);
-//
-//            }
-//
-//        } catch (ClassNotFoundException | SQLException ex) {
-//            Logger.getLogger(SupplierForm.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        dtmSL = (DefaultTableModel) supplierListTable.getModel();
+
+        try {
+            ArrayList<Supplier> allSupplier = SupplierController.getAllSupplier();
+            for (Supplier supplier : allSupplier) {
+                String ar[] = {supplier.getNic(), supplier.getName(), supplier.getAddress(), String.valueOf(supplier.getTp())};
+                dtmSL.addRow(ar);
+
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(SupplierForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -73,14 +68,14 @@ public class SupplierForm extends javax.swing.JInternalFrame {
         addressNTextField = new javax.swing.JTextField();
         tpNoNTextField = new javax.swing.JTextField();
         nameNTextField = new javax.swing.JTextField();
-        eidNTextField = new javax.swing.JTextField();
+        nicNTextField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        enterButton = new javax.swing.JButton();
+        registerButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         removeButton = new javax.swing.JButton();
         nameRTextField = new javax.swing.JTextField();
-        eidRTextField = new javax.swing.JTextField();
+        nicRTextField = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -89,7 +84,7 @@ public class SupplierForm extends javax.swing.JInternalFrame {
         tpNoRTextField = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         nameUTextField = new javax.swing.JTextField();
-        eidUTextField = new javax.swing.JTextField();
+        nicUTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -101,7 +96,7 @@ public class SupplierForm extends javax.swing.JInternalFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        employeeListTable = new javax.swing.JTable();
+        supplierListTable = new javax.swing.JTable();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -153,9 +148,9 @@ public class SupplierForm extends javax.swing.JInternalFrame {
             }
         });
 
-        eidNTextField.addActionListener(new java.awt.event.ActionListener() {
+        nicNTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eidNTextFieldActionPerformed(evt);
+                nicNTextFieldActionPerformed(evt);
             }
         });
 
@@ -165,18 +160,18 @@ public class SupplierForm extends javax.swing.JInternalFrame {
         jLabel8.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         jLabel8.setText("Name :");
 
-        enterButton.setBackground(new java.awt.Color(51, 102, 255));
-        enterButton.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
-        enterButton.setText("Enter");
-        enterButton.setEnabled(false);
-        enterButton.addActionListener(new java.awt.event.ActionListener() {
+        registerButton.setBackground(new java.awt.Color(51, 102, 255));
+        registerButton.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
+        registerButton.setText("Register");
+        registerButton.setEnabled(false);
+        registerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enterButtonActionPerformed(evt);
+                registerButtonActionPerformed(evt);
             }
         });
-        enterButton.addKeyListener(new java.awt.event.KeyAdapter() {
+        registerButton.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                enterButtonKeyPressed(evt);
+                registerButtonKeyPressed(evt);
             }
         });
 
@@ -190,7 +185,7 @@ public class SupplierForm extends javax.swing.JInternalFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(eidNTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nicNTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,7 +201,7 @@ public class SupplierForm extends javax.swing.JInternalFrame {
                                 .addGap(0, 204, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(enterButton)))
+                        .addComponent(registerButton)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -215,7 +210,7 @@ public class SupplierForm extends javax.swing.JInternalFrame {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(eidNTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nicNTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -229,7 +224,7 @@ public class SupplierForm extends javax.swing.JInternalFrame {
                     .addComponent(jLabel6)
                     .addComponent(tpNoNTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(enterButton)
+                .addComponent(registerButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -252,9 +247,9 @@ public class SupplierForm extends javax.swing.JInternalFrame {
 
         nameRTextField.setEditable(false);
 
-        eidRTextField.addActionListener(new java.awt.event.ActionListener() {
+        nicRTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eidRTextFieldActionPerformed(evt);
+                nicRTextFieldActionPerformed(evt);
             }
         });
 
@@ -296,7 +291,7 @@ public class SupplierForm extends javax.swing.JInternalFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(eidRTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(nicRTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel10)
@@ -326,7 +321,7 @@ public class SupplierForm extends javax.swing.JInternalFrame {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(eidRTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nicRTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -353,9 +348,9 @@ public class SupplierForm extends javax.swing.JInternalFrame {
             }
         });
 
-        eidUTextField.addActionListener(new java.awt.event.ActionListener() {
+        nicUTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eidUTextFieldActionPerformed(evt);
+                nicUTextFieldActionPerformed(evt);
             }
         });
 
@@ -410,7 +405,7 @@ public class SupplierForm extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(eidUTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nicUTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -437,7 +432,7 @@ public class SupplierForm extends javax.swing.JInternalFrame {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(eidUTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nicUTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -462,16 +457,16 @@ public class SupplierForm extends javax.swing.JInternalFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, Short.MAX_VALUE)
+                .addGap(6, 6, 6))
         );
 
         jLabel32.setFont(new java.awt.Font("Nirmala UI", 1, 24)); // NOI18N
@@ -483,7 +478,7 @@ public class SupplierForm extends javax.swing.JInternalFrame {
         jLabel14.setForeground(new java.awt.Color(51, 102, 255));
         jLabel14.setText("Supplier Details");
 
-        employeeListTable.setModel(new javax.swing.table.DefaultTableModel(
+        supplierListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -499,7 +494,7 @@ public class SupplierForm extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(employeeListTable);
+        jScrollPane1.setViewportView(supplierListTable);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -508,7 +503,7 @@ public class SupplierForm extends javax.swing.JInternalFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -520,7 +515,7 @@ public class SupplierForm extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -542,231 +537,243 @@ public class SupplierForm extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void eidUTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eidUTextFieldActionPerformed
-//        String eid = eidUTextField.getText();
-//        try {
-//            Employee employee = EmployeeController.searchEmplyeeUsingEid(eid);
-//            if (employee != null) {
-//                nameUTextField.setText(employee.getName());
-//                addressUTextField.setText(employee.getAddress());
-//                tpNoUTextField.setText(String.valueOf(employee.getTpNo()));
-//
-//                nameUTextField.setEditable(true);
-//                addressUTextField.setEditable(true);
-//                tpNoUTextField.setEditable(true);
-//
-//                upDateButton.setEnabled(true);
-//
-//                nameUTextField.requestFocus();
-//            } else {
-//
-//                nameUTextField.setText("");
-//                addressUTextField.setText("");
-//                tpNoUTextField.setText("");
-//                JOptionPane.showMessageDialog(eidUTextField, "this Employee Id is not available");
-//            }
-//
-//        } catch (ClassNotFoundException | SQLException ex) {
-//            Logger.getLogger(SupplierForm.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+    private void nicUTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nicUTextFieldActionPerformed
+        String nic = nicUTextField.getText();
 
-    }//GEN-LAST:event_eidUTextFieldActionPerformed
+        if (!"".equals(nic)) {
+            try {
+                Supplier supplierFromNIC = SupplierController.getSupplierFromNIC(nic);
+                if (supplierFromNIC != null) {
+                    nameUTextField.setText(supplierFromNIC.getName());
+                    addressUTextField.setText(supplierFromNIC.getAddress());
+                    tpNoUTextField.setText(String.valueOf(supplierFromNIC.getTp()));
 
-    private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterButtonActionPerformed
-//        String eid = eidNTextField.getText();
-//        String name = nameNTextField.getText();
-//        String address = addressNTextField.getText();
-//        String tpNo = tpNoNTextField.getText();
-//
-//        if (!"".equals(eid) & !"".equals(name) & !"".equals(address) & !"".equals(tpNo)) {
-//            Employee employee = new Employee(eid, name, address, tpNo);
-//            try {
-//                int addEmployee = EmployeeController.addEmployee(employee);
-//                if (addEmployee > 0) {
-//
-//                    //add to the employeelit table
-//                    dtmEL.setRowCount(0);
-//                    ArrayList<Employee> allEmployee = EmployeeController.getAllEmployee();
-//                    for (Employee employee1 : allEmployee) {
-//                        String ar[] = {employee1.getEid(), employee1.getName(), employee1.getAddress(), String.valueOf(employee1.getTpNo())};
-//                        dtmEL.addRow(ar);
-//                    }
-//                    nameNTextField.setEditable(false);
-//                    addressNTextField.setEditable(false);
-//                    tpNoNTextField.setEditable(false);
-//
-//                    enterButton.setEnabled(false);
-//
-//                    eidNTextField.setText("");
-//                    nameNTextField.setText("");
-//                    addressNTextField.setText("");
-//                    tpNoNTextField.setText("");
-//
-//                    JOptionPane.showMessageDialog(enterButton, "New Employee entered..");
-//                }
-//
-//            } catch (ClassNotFoundException | SQLException ex) {
-//                Logger.getLogger(SupplierForm.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//
-//        } else {
-//            JOptionPane.showMessageDialog(enterButton, "Type all details");
-//        }
-    }//GEN-LAST:event_enterButtonActionPerformed
+                    nameUTextField.setEditable(true);
+                    addressUTextField.setEditable(true);
+                    tpNoUTextField.setEditable(true);
+
+                    upDateButton.setEnabled(true);
+
+                    nameUTextField.requestFocus();
+
+                } else {
+                    JOptionPane.showMessageDialog(nicNTextField, "This NIC is not registered.");
+                }
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(SupplierForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(nicNTextField, "Enter NIC.");
+        }
+
+    }//GEN-LAST:event_nicUTextFieldActionPerformed
+
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        String nic = nicNTextField.getText();
+        String name = nameNTextField.getText();
+        String address = addressNTextField.getText();
+        String tpNo = tpNoNTextField.getText();
+        if (tpNo.equals("")) {
+            tpNo = "0";
+        }
+
+        if (!"".equals(nic)) {
+            Supplier supplier = new Supplier(nic, name, address, Integer.valueOf(tpNo));
+            try {
+                int addSupplier = SupplierController.addSupplier(supplier);
+                if (addSupplier > 0) {
+
+                    //add to the employeelit table
+                    dtmSL.setRowCount(0);
+                    try {
+                        ArrayList<Supplier> allSupplier = SupplierController.getAllSupplier();
+                        for (Supplier supplier1 : allSupplier) {
+                            String ar[] = {supplier1.getNic(), supplier1.getName(), supplier1.getAddress(), String.valueOf(supplier1.getTp())};
+                            dtmSL.addRow(ar);
+
+                        }
+
+                    } catch (ClassNotFoundException | SQLException ex) {
+                        Logger.getLogger(SupplierForm.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    nameNTextField.setEditable(false);
+                    addressNTextField.setEditable(false);
+                    tpNoNTextField.setEditable(false);
+
+                    registerButton.setEnabled(false);
+
+                    nicNTextField.setText("");
+                    nameNTextField.setText("");
+                    addressNTextField.setText("");
+                    tpNoNTextField.setText("");
+
+                    JOptionPane.showMessageDialog(registerButton, "New Supplier Registered..");
+                }
+
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(SupplierForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(registerButton, "enter valid NIC");
+        }
+    }//GEN-LAST:event_registerButtonActionPerformed
 
     private void upDateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upDateButtonActionPerformed
-//        String eid = eidUTextField.getText();
-//        String name = nameUTextField.getText();
-//        String address = addressUTextField.getText();
-//        String tpNo = tpNoUTextField.getText();
-//
-//        if (!"".equals(eid) & !"".equals(name) & !"".equals(address) & !"".equals(tpNo)) {
-//
-//            Employee employee = new Employee(eid, name, address, tpNo);
-//
-//            try {
-//                int upDateEmployee = EmployeeController.upDateEmployee(employee);
-//                if (upDateEmployee > 0) {
-//
-//                    //add to the employeelit table
-//                    dtmEL.setRowCount(0);
-//                    ArrayList<Employee> allEmployee = EmployeeController.getAllEmployee();
-//                    for (Employee employee1 : allEmployee) {
-//                        String ar[] = {employee1.getEid(), employee1.getName(), employee1.getAddress(), String.valueOf(employee1.getTpNo())};
-//                        dtmEL.addRow(ar);
-//
-//                    }
-//
-//                    nameUTextField.setEditable(false);
-//                    addressUTextField.setEditable(false);
-//                    tpNoUTextField.setEditable(false);
-//
-//                    upDateButton.setEnabled(false);
-//
-//                    eidUTextField.setText("");
-//                    nameUTextField.setText("");
-//                    addressUTextField.setText("");
-//                    tpNoUTextField.setText("");
-//
-//                    eidUTextField.requestFocus();
-//
-//                    JOptionPane.showMessageDialog(upDateButton, "Updated..");
-//
-//                }
-//            } catch (ClassNotFoundException | SQLException ex) {
-//                Logger.getLogger(SupplierForm.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
+        String nic = nicUTextField.getText();
+        String name = nameUTextField.getText();
+        String address = addressUTextField.getText();
+        String tpNo = tpNoUTextField.getText();
+        if (tpNo.equals("")) {
+            tpNo = "0";
+        }
 
+        if (!"".equals(nic)) {
+            Supplier supplier = new Supplier(nic, name, address, Integer.valueOf(tpNo));
+            try {
+                int addSupplier = SupplierController.editSuplier(supplier);
+                if (addSupplier > 0) {
+
+                    //add to the supplier table
+                    dtmSL.setRowCount(0);
+                    try {
+                        ArrayList<Supplier> allSupplier = SupplierController.getAllSupplier();
+                        for (Supplier supplier1 : allSupplier) {
+                            String ar[] = {supplier1.getNic(), supplier1.getName(), supplier1.getAddress(), String.valueOf(supplier1.getTp())};
+                            dtmSL.addRow(ar);
+
+                        }
+
+                    } catch (ClassNotFoundException | SQLException ex) {
+                        Logger.getLogger(SupplierForm.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    nameNTextField.setEditable(false);
+                    addressNTextField.setEditable(false);
+                    tpNoNTextField.setEditable(false);
+
+                    registerButton.setEnabled(false);
+
+                    nicUTextField.setText("");
+                    nameUTextField.setText("");
+                    addressUTextField.setText("");
+                    tpNoUTextField.setText("");
+
+                    JOptionPane.showMessageDialog(registerButton, "Supplier Updated..");
+                }
+
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(SupplierForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(registerButton, "enter valid NIC");
+        }
 
     }//GEN-LAST:event_upDateButtonActionPerformed
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
 
-//        String eid = eidRTextField.getText();
-//        if (!"".equals(eid)) {
-//            try {
-//                int removeEmployee = EmployeeController.removeEmployee(eid);
-//                if (removeEmployee > 0) {
-//
-//                    eidRTextField.setText("");
-//                    nameRTextField.setText("");
-//                    addressRTextField.setText("");
-//                    tpNoRTextField.setText("");
-//
-//                    //add to the employeelit table
-//                    dtmEL.setRowCount(0);
-//                    ArrayList<Employee> allEmployee = EmployeeController.getAllEmployee();
-//                    for (Employee employee1 : allEmployee) {
-//                        String ar[] = {employee1.getEid(), employee1.getName(), employee1.getAddress(), String.valueOf(employee1.getTpNo())};
-//                        dtmEL.addRow(ar);
-//
-//                    }
-//                    JOptionPane.showMessageDialog(removeButton, "employee removed");
-//                }
-//            } catch (ClassNotFoundException | SQLException ex) {
-//                Logger.getLogger(SupplierForm.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        } else {
-//
-//            JOptionPane.showMessageDialog(rootPane, "enter the emplyee ID");
-//        }
+        String nic = nicRTextField.getText();
+        System.out.println(nic);
+        if (!nic.equals("")) {
+            System.out.println("aa");
+            try {
+                int removeSupplier = SupplierController.removeSupplier(nic);
+                if (removeSupplier > 0) {
 
+                    nicRTextField.setText("");
+                    nameRTextField.setText("");
+                    addressRTextField.setText("");
+                    tpNoRTextField.setText("");
+
+                    //add to the supplier table
+                    dtmSL.setRowCount(0);
+                    ArrayList<Supplier> allSuppliers = SupplierController.getAllSupplier();
+                    for (Supplier supplier : allSuppliers) {
+                        String ar[] = {supplier.getNic(), supplier.getName(), supplier.getAddress(), String.valueOf(supplier.getTp())};
+                        dtmSL.addRow(ar);
+
+                    }
+                    JOptionPane.showMessageDialog(removeButton, "Supplier removed");
+                }
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(SupplierForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+
+            JOptionPane.showMessageDialog(rootPane, "enter the emplyee ID");
+        }
 
     }//GEN-LAST:event_removeButtonActionPerformed
 
-    private void eidRTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eidRTextFieldActionPerformed
-//        String eid = eidRTextField.getText();
-//        if (!"".equals(eid)) {
-//            try {
-//                Employee employee = EmployeeController.searchEmplyeeUsingEid(eid);
-//                if (employee != null) {
-//                    nameRTextField.setText(employee.getName());
-//                    addressRTextField.setText(employee.getAddress());
-//                    tpNoRTextField.setText(String.valueOf(employee.getTpNo()));
-//
-//                    removeButton.setEnabled(true);
-//                    removeButton.requestFocus();
-//                } else {
-//
-//                    nameUTextField.setText("");
-//                    addressRTextField.setText("");
-//                    tpNoRTextField.setText("");
-//                    JOptionPane.showMessageDialog(eidRTextField, "this Employee Id is not available");
-//                }
-//
-//            } catch (ClassNotFoundException | SQLException ex) {
-//                Logger.getLogger(SupplierForm.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(eidRTextField, "Type EID.");
-//        }
+    private void nicRTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nicRTextFieldActionPerformed
+        String nic = nicRTextField.getText();
 
-    }//GEN-LAST:event_eidRTextFieldActionPerformed
+        if (!"".equals(nic)) {
+            try {
+                Supplier supplierFromNIC = SupplierController.getSupplierFromNIC(nic);
+                if (supplierFromNIC != null) {
+                    nameRTextField.setText(supplierFromNIC.getName());
+                    addressRTextField.setText(supplierFromNIC.getAddress());
+                    tpNoRTextField.setText(String.valueOf(supplierFromNIC.getTp()));
 
-    private void eidNTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eidNTextFieldActionPerformed
-//        String eid = eidNTextField.getText();
-//        if (!"".equals(eid)) {
-//
-//            try {
-//                String checkEmplyeeUsingEid = EmployeeController.checkEmplyeeUsingEid(eid);
-//                if (checkEmplyeeUsingEid == null) {
-//                    nameNTextField.setEditable(true);
-//                    nameNTextField.requestFocus();
-//
-//                } else {
-//                    JOptionPane.showMessageDialog(eidNTextField, "This EID already entered.");
-//                }
-//            } catch (ClassNotFoundException | SQLException ex) {
-//                Logger.getLogger(SupplierForm.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//
-//        } else {
-//            JOptionPane.showMessageDialog(eidNTextField, "Type Eid.");
-//        }
+                    removeButton.setEnabled(true);
+
+                    removeButton.requestFocus();
+
+                } else {
+                    JOptionPane.showMessageDialog(nicNTextField, "This NIC is not registered.");
+                }
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(SupplierForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(nicNTextField, "Type Eid.");
+        }
+
+    }//GEN-LAST:event_nicRTextFieldActionPerformed
+
+    private void nicNTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nicNTextFieldActionPerformed
+        String nic = nicNTextField.getText();
+        if (!"".equals(nic)) {
+
+            try {
+                Supplier supplierFromNIC = SupplierController.getSupplierFromNIC(nic);
+                if (supplierFromNIC == null) {
+                    nameNTextField.setEditable(true);
+                    addressNTextField.setEditable(true);
+                    tpNoNTextField.setEditable(true);
+                    registerButton.setEnabled(true);
+
+                    nameNTextField.requestFocus();
+
+                } else {
+                    JOptionPane.showMessageDialog(nicNTextField, "This NIC already registered.");
+                }
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(SupplierForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(nicNTextField, "Type Eid.");
+        }
 
 
-    }//GEN-LAST:event_eidNTextFieldActionPerformed
+    }//GEN-LAST:event_nicNTextFieldActionPerformed
 
     private void tpNoNTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tpNoNTextFieldActionPerformed
-//        String text = tpNoNTextField.getText();
-//        if (!"".equals(text)) {
-//
-//            enterButton.setEnabled(true);
-//            enterButton.requestFocus();
-//
-//        } else {
-//            JOptionPane.showMessageDialog(tpNoNTextField, "Type Mobile No.");
-//        }
+        registerButton.requestFocus();
 
 
     }//GEN-LAST:event_tpNoNTextFieldActionPerformed
@@ -790,7 +797,7 @@ public class SupplierForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tpNoRTextFieldKeyReleased
 
     private void tpNoUTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tpNoUTextFieldActionPerformed
-//        upDateButton.requestFocus();
+        upDateButton.requestFocus();
     }//GEN-LAST:event_tpNoUTextFieldActionPerformed
 
     private void tpNoUTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tpNoUTextFieldKeyReleased
@@ -798,40 +805,23 @@ public class SupplierForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tpNoUTextFieldKeyReleased
 
     private void nameNTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameNTextFieldActionPerformed
-//        String text = nameNTextField.getText();
-//        if (!"".equals(text)) {
-//
-//            addressNTextField.setEditable(true);
-//            addressNTextField.requestFocus();
-//
-//        } else {
-//            JOptionPane.showMessageDialog(nameNTextField, "Type name");
-//        }
+        addressNTextField.requestFocus();
 
     }//GEN-LAST:event_nameNTextFieldActionPerformed
 
     private void addressNTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressNTextFieldActionPerformed
-//        String text = addressNTextField.getText();
-//        if (!"".equals(text)) {
-//
-//            tpNoNTextField.setEditable(true);
-//            tpNoNTextField.requestFocus();
-//
-//        } else {
-//            JOptionPane.showMessageDialog(addressNTextField, "Type address");
-//        }
-
+        tpNoNTextField.requestFocus();
     }//GEN-LAST:event_addressNTextFieldActionPerformed
 
     private void nameUTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameUTextFieldActionPerformed
-//        addressUTextField.requestFocus();
+        addressUTextField.requestFocus();
     }//GEN-LAST:event_nameUTextFieldActionPerformed
 
     private void addressUTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressUTextFieldActionPerformed
-//        tpNoUTextField.requestFocus();
+        tpNoUTextField.requestFocus();
     }//GEN-LAST:event_addressUTextFieldActionPerformed
 
-    private void enterButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_enterButtonKeyPressed
+    private void registerButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_registerButtonKeyPressed
 //        String eid = eidNTextField.getText();
 //        String name = nameNTextField.getText();
 //        String address = addressNTextField.getText();
@@ -872,7 +862,7 @@ public class SupplierForm extends javax.swing.JInternalFrame {
 //        } else {
 //            JOptionPane.showMessageDialog(enterButton, "Type all details");
 //        }
-    }//GEN-LAST:event_enterButtonKeyPressed
+    }//GEN-LAST:event_registerButtonKeyPressed
 
     private void removeButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_removeButtonKeyPressed
 //        String eid = eidRTextField.getText();
@@ -912,11 +902,6 @@ public class SupplierForm extends javax.swing.JInternalFrame {
     private javax.swing.JTextField addressNTextField;
     private javax.swing.JTextField addressRTextField;
     private javax.swing.JTextField addressUTextField;
-    private javax.swing.JTextField eidNTextField;
-    private javax.swing.JTextField eidRTextField;
-    private javax.swing.JTextField eidUTextField;
-    private javax.swing.JTable employeeListTable;
-    private javax.swing.JButton enterButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -942,7 +927,12 @@ public class SupplierForm extends javax.swing.JInternalFrame {
     private javax.swing.JTextField nameNTextField;
     private javax.swing.JTextField nameRTextField;
     private javax.swing.JTextField nameUTextField;
+    private javax.swing.JTextField nicNTextField;
+    private javax.swing.JTextField nicRTextField;
+    private javax.swing.JTextField nicUTextField;
+    private javax.swing.JButton registerButton;
     private javax.swing.JButton removeButton;
+    private javax.swing.JTable supplierListTable;
     private javax.swing.JTextField tpNoNTextField;
     private javax.swing.JTextField tpNoRTextField;
     private javax.swing.JTextField tpNoUTextField;

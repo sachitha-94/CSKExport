@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import model.CinnamonType;
-import model.Supplier;
 
 /**
  *
@@ -61,6 +60,25 @@ public class CinnamonTypeController {
         ResultSet rst = stm.executeQuery();
         if (rst.next()) {
             CinnamonType cinnamonType = new CinnamonType(cid, rst.getString("type"), rst.getDouble("price"));
+
+            return cinnamonType;
+
+        } else {
+            return null;
+        }
+
+    }
+
+    public static CinnamonType getCidAndPriceFromType(String type) throws ClassNotFoundException, SQLException {
+
+        Connection conn = DBConnection.getInstance().getConnection();
+        PreparedStatement stm = conn.prepareStatement("SELECT cid,price FROM tab_cinnamontype where type=?");
+        stm.setObject(1, type);
+        ResultSet rst = stm.executeQuery();
+        if (rst.next()) {
+            CinnamonType cinnamonType=new CinnamonType();
+            cinnamonType.setCid(rst.getString("cid"));
+            cinnamonType.setPrice(rst.getDouble("price"));
 
             return cinnamonType;
 
@@ -122,7 +140,7 @@ public class CinnamonTypeController {
         ResultSet rst = stm.executeQuery(sql);
         ArrayList<CinnamonType> cinnamonTypes = new ArrayList<>();
         while (rst.next()) {
-            CinnamonType cinnamonType = new CinnamonType(rst.getString("nic"), rst.getString("type"), rst.getDouble("price"));
+            CinnamonType cinnamonType = new CinnamonType(rst.getString("cid"), rst.getString("type"), rst.getDouble("price"));
             cinnamonTypes.add(cinnamonType);
 
         }

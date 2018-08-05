@@ -12,7 +12,9 @@ import java.util.Date;
  * @author Sachitha
  */
 public class Cheque {
+
     private String cheqNo;
+    private int pid;
     private String nic;
     private String bankName;
     private Date issueDate;
@@ -20,11 +22,12 @@ public class Cheque {
     public Cheque() {
     }
 
-    public Cheque(String cheqNo, String nic, String bankName, Date issueDate) {
-        this.cheqNo = cheqNo;
-        this.nic = nic;
-        this.bankName = bankName;
-        this.issueDate = issueDate;
+    public int getPid() {
+        return pid;
+    }
+
+    public void setPid(int pid) {
+        this.pid = pid;
     }
 
     public String getCheqNo() {
@@ -58,5 +61,5 @@ public class Cheque {
     public void setIssueDate(Date issueDate) {
         this.issueDate = issueDate;
     }
-    
+
 }

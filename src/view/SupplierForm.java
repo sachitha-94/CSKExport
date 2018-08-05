@@ -588,7 +588,11 @@ public class SupplierForm extends javax.swing.JInternalFrame {
         }
 
         if (!"".equals(nic)) {
-            Supplier supplier = new Supplier(nic, name, address, Integer.valueOf(tpNo));
+            Supplier supplier = new Supplier();
+            supplier.setNic(nic);
+            supplier.setName(name);
+            supplier.setTp(Integer.valueOf(tpNo));
+
             try {
                 int addSupplier = SupplierController.addSupplier(supplier);
                 if (addSupplier > 0) {
@@ -639,7 +643,10 @@ public class SupplierForm extends javax.swing.JInternalFrame {
         }
 
         if (!"".equals(nic)) {
-            Supplier supplier = new Supplier(nic, name, address, Integer.valueOf(tpNo));
+            Supplier supplier = new Supplier();
+            supplier.setNic(nic);
+            supplier.setName(name);
+            supplier.setTp(Integer.valueOf(tpNo));
             try {
                 int addSupplier = SupplierController.editSuplier(supplier);
                 if (addSupplier > 0) {

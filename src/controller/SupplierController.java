@@ -61,7 +61,11 @@ public class SupplierController {
         stm.setObject(1, nic);
         ResultSet rst = stm.executeQuery();
         if (rst.next()) {
-            Supplier supplier = new Supplier(nic, rst.getString("name"), rst.getString("address"), rst.getInt("tp"));
+            Supplier supplier = new Supplier();
+            supplier.setNic(nic);
+            supplier.setName(rst.getString("name"));
+            supplier.setAddress(rst.getString("address"));
+            supplier.setTp(rst.getInt("tp"));
 
             return supplier;
 
@@ -84,7 +88,6 @@ public class SupplierController {
 //        }
 //
 //    }
-
 //    public static Employee searchEmplyeeUsingName(String name) throws ClassNotFoundException, SQLException {
 //
 //        Connection conn = DBConnection.getInstance().getConnection();
@@ -101,7 +104,6 @@ public class SupplierController {
 //        }
 //
 //    }
-
 //    public static String getNameUsingEid(String eid) throws ClassNotFoundException, SQLException {
 //
 //        Connection conn = DBConnection.getInstance().getConnection();
@@ -117,7 +119,6 @@ public class SupplierController {
 //        }
 //
 //    }
-
     public static ArrayList<Supplier> getAllSupplier() throws ClassNotFoundException, SQLException {
 
         Connection conn = DBConnection.getInstance().getConnection();
@@ -126,7 +127,13 @@ public class SupplierController {
         ResultSet rst = stm.executeQuery(sql);
         ArrayList<Supplier> suppliers = new ArrayList<>();
         while (rst.next()) {
-            Supplier supplier = new Supplier(rst.getString("nic"), rst.getString("name"), rst.getString("address"), rst.getInt("tp"));
+
+            Supplier supplier = new Supplier();
+            supplier.setNic(rst.getString("nic"));
+            supplier.setName(rst.getString("name"));
+            supplier.setAddress(rst.getString("address"));
+            supplier.setTp(rst.getInt("tp"));
+
             suppliers.add(supplier);
 
         }

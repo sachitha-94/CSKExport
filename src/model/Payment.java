@@ -12,27 +12,16 @@ import java.util.Date;
  * @author Sachitha
  */
 public class Payment {
+
     private int pid;
     private String cid;
     private double grossWeight;
     private double wetWeight;
     private double reduceWeight;
     private double amount;
-    private String cheqNo;
     private Date date;
 
     public Payment() {
-    }
-
-    public Payment(int pid, String cid, double grossWeight, double wetWeight, double reduceWeight, double amount, String cheqNo, Date date) {
-        this.pid = pid;
-        this.cid = cid;
-        this.grossWeight = grossWeight;
-        this.wetWeight = wetWeight;
-        this.reduceWeight = reduceWeight;
-        this.amount = amount;
-        this.cheqNo = cheqNo;
-        this.date = date;
     }
 
     public int getPid() {
@@ -83,14 +72,6 @@ public class Payment {
         this.amount = amount;
     }
 
-    public String getCheqNo() {
-        return cheqNo;
-    }
-
-    public void setCheqNo(String cheqNo) {
-        this.cheqNo = cheqNo;
-    }
-
     public Date getDate() {
         return date;
     }
@@ -99,8 +80,4 @@ public class Payment {
         this.date = date;
     }
 
-   
-    
-    
-    
 }

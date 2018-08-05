@@ -17,11 +17,6 @@ public class CinnamonType {
     public CinnamonType() {
     }
 
-    public CinnamonType(String cid, String type, double price) {
-        this.cid = cid;
-        this.type = type;
-        this.price = price;
-    }
 
     public double getPrice() {
         return price;

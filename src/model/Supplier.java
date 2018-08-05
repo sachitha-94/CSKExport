@@ -10,20 +10,13 @@ package model;
  * @author Sachitha
  */
 public class Supplier {
-    
+
     private String nic;
     private String name;
     private String address;
     private int tp;
 
     public Supplier() {
-    }
-
-    public Supplier(String nic, String name, String address, int tp) {
-        this.nic = nic;
-        this.name = name;
-        this.address = address;
-        this.tp = tp;
     }
 
     public String getNic() {
@@ -57,6 +50,5 @@ public class Supplier {
     public void setTp(int tp) {
         this.tp = tp;
     }
-    
-    
+
 }

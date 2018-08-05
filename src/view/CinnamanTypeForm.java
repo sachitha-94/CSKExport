@@ -511,14 +511,14 @@ public class CinnamanTypeForm extends javax.swing.JInternalFrame {
         if (!"".equals(cid)) {
 
             try {
-                CinnamonType cinnamonType = CinnamonTypeController.getCinnamonFromCID(cid);
+                CinnamonType cinnamonType = CinnamonTypeController.getAllFromCID(cid);
                 if (cinnamonType != null) {
                     typeUTextField.setEditable(true);
                     priceUTextField.setEditable(true);
 
                     typeUTextField.setText(cinnamonType.getType());
                     priceUTextField.setText(String.valueOf(cinnamonType.getPrice()));
-                    
+
                     upDateButton.setEnabled(true);
 
                     typeUTextField.requestFocus();
@@ -545,7 +545,7 @@ public class CinnamanTypeForm extends javax.swing.JInternalFrame {
         if (!"".equals(cid)) {
 
             try {
-                CinnamonType cinnamonType = CinnamonTypeController.getCinnamonFromCID(cid);
+                CinnamonType cinnamonType = CinnamonTypeController.getAllFromCID(cid);
                 if (cinnamonType != null) {
 
                     typeRTextField.setText(cinnamonType.getType());
@@ -567,7 +567,7 @@ public class CinnamanTypeForm extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cidRTextFieldActionPerformed
 
     private void typeRTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeRTextFieldActionPerformed
- 
+
     }//GEN-LAST:event_typeRTextFieldActionPerformed
 
     private void priceRTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceRTextFieldActionPerformed
@@ -583,7 +583,7 @@ public class CinnamanTypeForm extends javax.swing.JInternalFrame {
         if (!"".equals(cid)) {
 
             try {
-                CinnamonType cinnamonType = CinnamonTypeController.getCinnamonFromCID(cid);
+                CinnamonType cinnamonType = CinnamonTypeController.getAllFromCID(cid);
                 if (cinnamonType == null) {
                     cidNTextField.setEditable(true);
                     typeNTextField.setEditable(true);
@@ -630,7 +630,10 @@ public class CinnamanTypeForm extends javax.swing.JInternalFrame {
         String price = priceNTextField.getText();
 
         if (!"".equals(cid) & !"".equals(type) & !"".equals(price)) {
-            CinnamonType cinnamonType = new CinnamonType(cid, type, Double.parseDouble(price));
+            CinnamonType cinnamonType = new CinnamonType();
+            cinnamonType.setCid(cid);
+            cinnamonType.setType(type);
+            cinnamonType.setPrice(Double.parseDouble(price));
             try {
                 int addType = CinnamonTypeController.addType(cinnamonType);
                 if (addType > 0) {
@@ -666,7 +669,10 @@ public class CinnamanTypeForm extends javax.swing.JInternalFrame {
         String price = priceUTextField.getText();
 
         if (!"".equals(cid) & !"".equals(type) & !"".equals(price)) {
-            CinnamonType cinnamonType = new CinnamonType(cid, type, Double.parseDouble(price));
+            CinnamonType cinnamonType = new CinnamonType();
+            cinnamonType.setCid(cid);
+            cinnamonType.setType(type);
+            cinnamonType.setPrice(Double.parseDouble(price));
             try {
                 int editType = CinnamonTypeController.editType(cinnamonType);
                 if (editType > 0) {

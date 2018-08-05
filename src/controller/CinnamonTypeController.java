@@ -52,14 +52,17 @@ public class CinnamonTypeController {
 
     }
 
-    public static CinnamonType getCinnamonFromCID(String cid) throws ClassNotFoundException, SQLException {
+    public static CinnamonType getAllFromCID(String cid) throws ClassNotFoundException, SQLException {
 
         Connection conn = DBConnection.getInstance().getConnection();
         PreparedStatement stm = conn.prepareStatement("SELECT * FROM tab_cinnamontype where cid=?");
         stm.setObject(1, cid);
         ResultSet rst = stm.executeQuery();
         if (rst.next()) {
-            CinnamonType cinnamonType = new CinnamonType(cid, rst.getString("type"), rst.getDouble("price"));
+            CinnamonType cinnamonType = new CinnamonType();
+            cinnamonType.setCid(cid);
+            cinnamonType.setType(rst.getString("type"));
+            cinnamonType.setPrice(rst.getDouble("price"));
 
             return cinnamonType;
 
@@ -69,17 +72,34 @@ public class CinnamonTypeController {
 
     }
 
-    public static CinnamonType getCidAndPriceFromType(String type) throws ClassNotFoundException, SQLException {
+    public static CinnamonType getCIDFromType(String type) throws ClassNotFoundException, SQLException {
 
         Connection conn = DBConnection.getInstance().getConnection();
-        PreparedStatement stm = conn.prepareStatement("SELECT cid,price FROM tab_cinnamontype where type=?");
+        PreparedStatement stm = conn.prepareStatement("SELECT cid FROM tab_cinnamontype where type=?");
         stm.setObject(1, type);
         ResultSet rst = stm.executeQuery();
         if (rst.next()) {
-            CinnamonType cinnamonType=new CinnamonType();
+            CinnamonType cinnamonType = new CinnamonType();
             cinnamonType.setCid(rst.getString("cid"));
-            cinnamonType.setPrice(rst.getDouble("price"));
+            cinnamonType.setType(type);
+            return cinnamonType;
 
+        } else {
+            return null;
+        }
+
+    }
+
+    public static CinnamonType getTypeFromCID(String cid) throws ClassNotFoundException, SQLException {
+
+        Connection conn = DBConnection.getInstance().getConnection();
+        PreparedStatement stm = conn.prepareStatement("SELECT type FROM tab_cinnamontype where cid=?");
+        stm.setObject(1, cid);
+        ResultSet rst = stm.executeQuery();
+        if (rst.next()) {
+            CinnamonType cinnamonType = new CinnamonType();
+            cinnamonType.setCid(cid);
+            cinnamonType.setType(rst.getString("type"));
             return cinnamonType;
 
         } else {
@@ -132,6 +152,20 @@ public class CinnamonTypeController {
 //        }
 //
 //    }
+//    public static ArrayList<CinnamonType> getAllCinnamon() throws ClassNotFoundException, SQLException {
+//
+//        Connection conn = DBConnection.getInstance().getConnection();
+//        Statement stm = conn.createStatement();
+//        String sql = "SELECT * FROM tab_cinnamontype ";
+//        ResultSet rst = stm.executeQuery(sql);
+//        ArrayList<CinnamonType> cinnamonTypes = new ArrayList<>();
+//        while (rst.next()) {
+//            CinnamonType cinnamonType = new CinnamonType(rst.getString("cid"), rst.getString("type"), rst.getDouble("price"));
+//            cinnamonTypes.add(cinnamonType);
+//
+//        }
+//        return cinnamonTypes;
+//    }
     public static ArrayList<CinnamonType> getAllCinnamon() throws ClassNotFoundException, SQLException {
 
         Connection conn = DBConnection.getInstance().getConnection();
@@ -140,11 +174,101 @@ public class CinnamonTypeController {
         ResultSet rst = stm.executeQuery(sql);
         ArrayList<CinnamonType> cinnamonTypes = new ArrayList<>();
         while (rst.next()) {
-            CinnamonType cinnamonType = new CinnamonType(rst.getString("cid"), rst.getString("type"), rst.getDouble("price"));
+            CinnamonType cinnamonType = new CinnamonType();
+            cinnamonType.setCid(rst.getString("cid"));
+            cinnamonType.setType(rst.getString("type"));
+            cinnamonType.setPrice(rst.getDouble("price"));
             cinnamonTypes.add(cinnamonType);
 
         }
         return cinnamonTypes;
     }
 
+    public static ArrayList<String> getAllTypes() throws ClassNotFoundException, SQLException {
+
+        Connection conn = DBConnection.getInstance().getConnection();
+        Statement stm = conn.createStatement();
+        String sql = "SELECT type FROM tab_cinnamontype ";
+        ResultSet rst = stm.executeQuery(sql);
+        ArrayList<String> types = new ArrayList<>();
+        while (rst.next()) {
+            types.add(rst.getString("type"));
+
+        }
+        return types;
+    }
+
+    //
+//       public static int removeType(String cid) throws ClassNotFoundException, SQLException {
+//        Connection conn = DBConnection.getInstance().getConnection();
+//        PreparedStatement stm = conn.prepareStatement("DELETE FROM tab_cinnamontype where cid=?");
+//        stm.setObject(1, cid);
+//        return stm.executeUpdate();
+//
+//    }
+//
+//    public static CinnamonType getCinnamonFromCID(String cid) throws ClassNotFoundException, SQLException {
+//
+//        Connection conn = DBConnection.getInstance().getConnection();
+//        PreparedStatement stm = conn.prepareStatement("SELECT * FROM tab_cinnamontype where cid=?");
+//        stm.setObject(1, cid);
+//        ResultSet rst = stm.executeQuery();
+//        if (rst.next()) {
+//            CinnamonType cinnamonType = new CinnamonType();
+//            cinnamonType.setCid(cid);
+//            cinnamonType.setType(rst.getString("type"));
+//            cinnamonType.setPrice(rst.getDouble("price"));
+//
+//            return cinnamonType;
+//
+//        } else {
+//            return null;
+//        }
+//
+//    }
+//
+////    public static String checkEmplyeeUsingEid(String eid) throws ClassNotFoundException, SQLException {
+////
+////        Connection conn = DBConnection.getInstance().getConnection();
+////        Statement stm = conn.createStatement();
+////        String sql = "SELECT eid FROM employee where eid='" + eid + "'";
+////        ResultSet rst = stm.executeQuery(sql);
+////        if (rst.next()) {
+////            return rst.getString("eid");
+////        } else {
+////            return null;
+////        }
+////
+////    }
+////    public static Employee searchEmplyeeUsingName(String name) throws ClassNotFoundException, SQLException {
+////
+////        Connection conn = DBConnection.getInstance().getConnection();
+////        Statement stm = conn.createStatement();
+////        String sql = "SELECT * FROM employee where name='" + name + "'";
+////        ResultSet rst = stm.executeQuery(sql);
+////        if (rst.next()) {
+////            Employee employee = new Employee(rst.getString("eid"), name, rst.getString("addres"), rst.getString("tpNo"));
+////
+////            return employee;
+////
+////        } else {
+////            return null;
+////        }
+////
+////    }
+////    public static String getNameUsingEid(String eid) throws ClassNotFoundException, SQLException {
+////
+////        Connection conn = DBConnection.getInstance().getConnection();
+////        Statement stm = conn.createStatement();
+////        String sql = "SELECT name FROM employee where eid='" + eid + "'";
+////        ResultSet rst = stm.executeQuery(sql);
+////        if (rst.next()) {
+////
+////            return rst.getString("name");
+////
+////        } else {
+////            return null;
+////        }
+////
+////    }
 }

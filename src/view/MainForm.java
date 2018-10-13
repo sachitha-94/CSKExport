@@ -30,12 +30,14 @@ public class MainForm extends javax.swing.JFrame {
      * Creates new form MainForm
      */
     DefaultTableModel dtmOrderTable;
+   // private double total = 0;
 
     public MainForm() {
         initComponents();
         dtmOrderTable = (DefaultTableModel) orderTable.getModel();
 
         showOrdersInTable();
+        //totalTextField.setText(String.valueOf(total));
         setCinnamonTypeComboBox();
         new ComboSearch().setSearchableComboBox(cinnamonTypeComboBox, "No Catagory");
 
@@ -53,16 +55,19 @@ public class MainForm extends javax.swing.JFrame {
         dtmOrderTable.setRowCount(0);
         try {
             ArrayList<Payment> allTempOrders = PaymentController.getAllTempOrders();
+            double total = PaymentController.getSumOfPaymentTempPayment();
 
             for (Payment Order : allTempOrders) {
-                String[] ar = {Order.getCid(),
+                String[] ar = {Order.getType(),
                     String.valueOf(Order.getGrossWeight()),
                     String.valueOf(Order.getWetWeight()),
                     String.valueOf(Order.getReduceWeight()),
                     String.valueOf(Order.getAmount())};
+                //total = total + Order.getAmount();
 
                 dtmOrderTable.addRow(ar);
             }
+            totalTextField.setText(String.valueOf(total));
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -125,6 +130,7 @@ public class MainForm extends javax.swing.JFrame {
         payButton = new javax.swing.JButton();
         totalTextField = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        chequeNoLabel = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         dashBordButton = new javax.swing.JButton();
@@ -174,7 +180,7 @@ public class MainForm extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         jLabel5.setText("Payment No:");
 
-        paymentNoTextField.setEnabled(false);
+        paymentNoTextField.setEditable(false);
         paymentNoTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 paymentNoTextFieldActionPerformed(evt);
@@ -356,6 +362,9 @@ public class MainForm extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 chequeNoTextFieldKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                chequeNoTextFieldKeyTyped(evt);
+            }
         });
 
         jLabel17.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
@@ -416,6 +425,8 @@ public class MainForm extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         jLabel8.setText("Total :");
 
+        chequeNoLabel.setForeground(new java.awt.Color(255, 0, 51));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -431,14 +442,17 @@ public class MainForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nicTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(chequeNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(newSupplierButton)))
+                            .addComponent(newSupplierButton)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(chequeNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(chequeNoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bankNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(chequeCheckBox))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 463, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 331, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(totalTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -461,7 +475,8 @@ public class MainForm extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
-                            .addComponent(chequeNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(chequeNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(chequeNoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel17)
@@ -600,18 +615,28 @@ public class MainForm extends javax.swing.JFrame {
                 payment.setReduceWeight(reduceWeight);
                 payment.setWetWeight(wetWeight);
                 payment.setAmount(amount);
+                payment.setType(cinnamanType);
 
                 int addPaymentToTemp = 0;
 
                 try {
-                    addPaymentToTemp = PaymentController.addPaymentToTemp(payment);
+                    boolean cidAvailable = PaymentController.isCidAvailable(cid);
+                    if (cidAvailable) {
+                        addPaymentToTemp = PaymentController.updatePaymentToTemp(payment);
+
+                    } else {
+                        addPaymentToTemp = PaymentController.addPaymentToTemp(payment);
+                    }
                 } catch (ClassNotFoundException | SQLException ex) {
                     Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 if (addPaymentToTemp > 0) {
+                    //total = total + amount;
 
-                    String ar[] = {cinnamanType, String.valueOf(payment.getGrossWeight()), String.valueOf(payment.getWetWeight()), String.valueOf(payment.getReduceWeight()), String.valueOf(payment.getAmount())};
-                    dtmOrderTable.addRow(ar);
+//                    String ar[] = {cinnamanType, String.valueOf(payment.getGrossWeight()), String.valueOf(payment.getWetWeight()), String.valueOf(payment.getReduceWeight()), String.valueOf(payment.getAmount())};
+//                    dtmOrderTable.addRow(ar);
+                    showOrdersInTable();
+                    //totalTextField.setText(String.valueOf(total));
 
                     cidComboBox.removeAllItems();
                     cinnamonTypeComboBox.removeAllItems();
@@ -703,7 +728,24 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_wetWTextFieldKeyTyped
 
     private void chequeNoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chequeNoTextFieldActionPerformed
-        // TODO add your handling code here:
+        String chequeNO = chequeNoTextField.getText();
+        if (!chequeNO.equals("")) {
+            try {
+                boolean issuedCheque = ChequeController.isIssuedCheque(chequeNO);
+                if (issuedCheque) {
+                    chequeNoLabel.setText("This Cheque is already issued");
+                } else {
+                    chequeNoLabel.setText("");
+                    nicTextField.setEnabled(true);
+                    newSupplierButton.setEnabled(true);
+                    bankNameTextField.setEnabled(true);
+                }
+
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
     }//GEN-LAST:event_chequeNoTextFieldActionPerformed
 
     private void chequeNoTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_chequeNoTextFieldKeyPressed
@@ -750,7 +792,27 @@ public class MainForm extends javax.swing.JFrame {
                             cheque.setBankName(bankName);
                             int addCheque = ChequeController.addCheque(cheque);
                             if (addCheque > 0) {
-                                JOptionPane.showMessageDialog(orderTable, "Paid and check is issued");
+                                int removeTempAllOrders = PaymentController.removeTempAllOrders();
+                                if (removeTempAllOrders > 0) {
+
+                                    dtmOrderTable.setRowCount(0);
+                                    String nextpid = "";
+                                    try {
+                                        nextpid = AutoId.getNextId("tab_payment", "pid", "");
+                                        paymentNoTextField.setText(nextpid);
+                                    } catch (ClassNotFoundException | SQLException ex) {
+                                        Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                    paymentNoTextField.setText(nextpid);
+                                    chequeCheckBox.setSelected(false);
+                                    chequeNoTextField.setText("");
+                                    nicTextField.setText("");
+                                    bankNameTextField.setText("");
+                                    totalTextField.setText("");
+                                    newSupplierButton.setEnabled(false);
+                                    JOptionPane.showMessageDialog(orderTable, "Paid and check is issued");
+                                } else {
+                                }
 
                             } else {
                             }
@@ -758,7 +820,14 @@ public class MainForm extends javax.swing.JFrame {
                         }
 
                     } else if (addPayment > 0 && !chequeCheckBox.isSelected()) {
-                        JOptionPane.showMessageDialog(cidComboBox, "paid");
+                        int removeTempAllOrders = PaymentController.removeTempAllOrders();
+                        if (removeTempAllOrders > 0) {
+                            dtmOrderTable.setRowCount(0);
+                            totalTextField.setText("");
+                            JOptionPane.showMessageDialog(cidComboBox, "paid");
+                        } else {
+                        }
+
                     }
 
                 }
@@ -819,11 +888,8 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_cidComboBoxKeyPressed
 
     private void chequeCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chequeCheckBoxActionPerformed
-        if (chequeCheckBox.isSelected()) {
+        if (chequeCheckBox.isSelected() && dtmOrderTable.getRowCount() > 0) {
             chequeNoTextField.setEnabled(true);
-            nicTextField.setEnabled(true);
-            newSupplierButton.setEnabled(true);
-            bankNameTextField.setEnabled(true);
 
         } else {
             chequeNoTextField.setEnabled(false);
@@ -836,6 +902,11 @@ public class MainForm extends javax.swing.JFrame {
         bankNameTextField.setText("");
 
     }//GEN-LAST:event_chequeCheckBoxActionPerformed
+
+    private void chequeNoTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_chequeNoTextFieldKeyTyped
+
+
+    }//GEN-LAST:event_chequeNoTextFieldKeyTyped
 
     /**
      * @param args the command line arguments
@@ -876,6 +947,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JButton addButton;
     private javax.swing.JTextField bankNameTextField;
     private javax.swing.JCheckBox chequeCheckBox;
+    private javax.swing.JLabel chequeNoLabel;
     private javax.swing.JTextField chequeNoTextField;
     private javax.swing.JComboBox cidComboBox;
     private javax.swing.JComboBox cinnamonTypeComboBox;

@@ -33,16 +33,31 @@ public class PaymentController {
         return stm.executeUpdate();
     }
 
-    
     public static int addPaymentToTemp(Payment payment) throws ClassNotFoundException, SQLException {
 
         Connection conn = DBConnection.getInstance().getConnection();
-        PreparedStatement stm = conn.prepareStatement("INSERT INTO tab_temp_payment(cid,grossWeight,wetWeight,reduceWeight,amount,date) VALUES(?,?,?,?,?,now())");
+        PreparedStatement stm = conn.prepareStatement("INSERT INTO tab_temp_payment(cid,grossWeight,wetWeight,reduceWeight,amount,date,type) VALUES(?,?,?,?,?,now(),?)");
         stm.setObject(1, payment.getCid());
         stm.setObject(2, payment.getGrossWeight());
         stm.setObject(3, payment.getWetWeight());
         stm.setObject(4, payment.getReduceWeight());
         stm.setObject(5, payment.getAmount());
+        stm.setObject(6, payment.getType());
+
+        return stm.executeUpdate();
+    }
+
+    public static int updatePaymentToTemp(Payment payment) throws ClassNotFoundException, SQLException {
+
+        Connection conn = DBConnection.getInstance().getConnection();
+        PreparedStatement stm = conn.prepareStatement("UPDATE tab_temp_payment set grossWeight=?,wetWeight=?,reduceWeight=?,amount=?,date=now(),type=? where cid=?");
+
+        stm.setObject(1, payment.getGrossWeight());
+        stm.setObject(2, payment.getWetWeight());
+        stm.setObject(3, payment.getReduceWeight());
+        stm.setObject(4, payment.getAmount());
+        stm.setObject(5, payment.getType());
+        stm.setObject(6, payment.getCid());
 
         return stm.executeUpdate();
     }
@@ -64,7 +79,7 @@ public class PaymentController {
     public static ArrayList<Payment> getAllTempOrders() throws ClassNotFoundException, SQLException {
         Connection conn = DBConnection.getInstance().getConnection();
         PreparedStatement stm = conn.prepareStatement("select * from tab_temp_payment");
-        
+
         ResultSet rst = stm.executeQuery();
         ArrayList<Payment> list = new ArrayList();
         while (rst.next()) {
@@ -74,10 +89,45 @@ public class PaymentController {
             payment.setWetWeight(rst.getDouble("wetWeight"));
             payment.setReduceWeight(rst.getDouble("reduceWeight"));
             payment.setAmount(rst.getDouble("amount"));
+            payment.setType(rst.getString("type"));
             list.add(payment);
 
         }
         return list;
     }
 
+    public static int removeTempAllOrders() throws ClassNotFoundException, SQLException {
+        Connection conn = DBConnection.getInstance().getConnection();
+        PreparedStatement stm = conn.prepareStatement("DELETE FROM tab_temp_payment");
+        return stm.executeUpdate();
+
+    }
+
+    public static boolean isCidAvailable(String cid) throws ClassNotFoundException, SQLException {
+
+        Connection conn = DBConnection.getInstance().getConnection();
+        PreparedStatement stm = conn.prepareStatement("SELECT cid FROM tab_temp_payment where cid=?");
+        stm.setObject(1, cid);
+        ResultSet rst = stm.executeQuery();
+        if (rst.next()) {
+            return true;
+
+        } else {
+            return false;
+        }
+
+    }
+        public static double getSumOfPaymentTempPayment() throws ClassNotFoundException, SQLException {
+
+        Connection conn = DBConnection.getInstance().getConnection();
+        PreparedStatement stm = conn.prepareStatement("SELECT sum(amount) as total FROM tab_temp_payment");
+        ResultSet rst = stm.executeQuery();
+        if (rst.next()) {
+          return rst.getDouble("total");
+
+        } else {
+            return 0;
+        }
+
+    }
 }

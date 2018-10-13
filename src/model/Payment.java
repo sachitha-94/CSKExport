@@ -15,6 +15,7 @@ public class Payment {
 
     private int pid;
     private String cid;
+    private String type;
     private double grossWeight;
     private double wetWeight;
     private double reduceWeight;
@@ -22,6 +23,14 @@ public class Payment {
     private Date date;
 
     public Payment() {
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public int getPid() {

@@ -133,11 +133,11 @@ public class DashBordForm extends javax.swing.JFrame {
     }//GEN-LAST:event_changePasswordButtonActionPerformed
 
     private void summaryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_summaryButtonActionPerformed
-//        DesktopPane1.removeAll();
-//        repaint();
-//        AdminEmployeeForm aef = new AdminEmployeeForm();
-//        DesktopPane1.add(aef);
-//        aef.setVisible(true);
+        dashBordDesktopPane.removeAll();
+        repaint();
+        SummaryMainForm smf = new SummaryMainForm();
+        dashBordDesktopPane.add(smf);
+        smf.setVisible(true);
 
     }//GEN-LAST:event_summaryButtonActionPerformed
 

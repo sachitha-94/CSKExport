@@ -8,6 +8,7 @@ package controller;
 import db.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import model.Cheque;
 import model.CinnamonType;
@@ -41,6 +42,21 @@ public class ChequeController {
         stm.setObject(3, cinnamonType.getCid());
 
         return stm.executeUpdate();
+
+    }
+    
+       public static boolean isIssuedCheque(String chequeNo) throws ClassNotFoundException, SQLException {
+
+        Connection conn = DBConnection.getInstance().getConnection();
+        PreparedStatement stm = conn.prepareStatement("SELECT cheqNo FROM tab_cheque where cheqNo=?");
+        stm.setObject(1, chequeNo);
+        ResultSet rst = stm.executeQuery();
+        if (rst.next()) {
+            return true;
+
+        } else {
+            return false;
+        }
 
     }
 
